@@ -18,7 +18,7 @@ const footerData = {
   familySites: [
     {
       name: "서산 이안 스카이원",
-      url: "https://www.hg-prugioriverfront.co.kr/", // 추후 실제 홈페이지 주소로 변경
+      url: "https://ianskyone.co.kr/", // 추후 실제 홈페이지 주소로 변경
     },
   ],
 
