@@ -1,0 +1,476 @@
+:root {
+  /* ================================
+     Header 공통 수정 변수
+     - PC와 모바일에서 자주 조정하는 값을 한곳에 모았습니다.
+     - 이 변수값을 바꾸면 아래 연결된 스타일이 함께 바뀝니다.
+  ================================ */
+
+  /* PC 상단 GIF 배너 높이 */
+  --top-banner-height: 4.35vw;
+
+  /* PC 상단 메뉴바 높이 */
+  --header-height: 4.3vw;
+
+  /* PC 헤더 좌우 여백 */
+  --pc-header-padding: 5.8vw;
+
+  /* PC 로고/전화번호 영역 폭 */
+  --pc-side-column: 24vw;
+
+  /* PC 메뉴 전체 폭 */
+  --pc-menu-width: min(860px, 52vw);
+
+  /* PC 메뉴 개수: 메뉴가 7개면 7, 8개면 8로 변경 */
+  --pc-menu-count: 7;
+
+  /* 모바일 GIF 배너 높이 */
+  --mobile-banner-height: 9vw;
+
+  /* 모바일 헤더 높이 */
+  --mobile-header-height: 15vw;
+
+  /* 브랜드 컬러 */
+  --brand-blue: #01496f;
+  --brand-navy: #06243b;
+  --brand-gold: #d4af37;
+  --brand-white: #ffffff;
+}
+
+/* Header 전체 래퍼 */
+.headerWrapper {
+  position: relative;
+  width: 100%;
+  z-index: 1000;
+  overflow: visible;
+}
+
+/* 상단 GIF 배너 */
+.gifBanner {
+  position: relative;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: var(--top-banner-height);
+
+  background: linear-gradient(90deg, #014b70 0%, #06324d 52%, #041f34 100%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+/* 상단 GIF 이미지 */
+.gifBanner img {
+  width: 61vw;
+  max-width: 1100px;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* PC 메뉴바 */
+.headerInitial {
+  position: relative;
+
+  height: var(--header-height);
+  padding: 0 var(--pc-header-padding);
+  box-sizing: border-box;
+
+  display: grid;
+  grid-template-columns: minmax(180px, var(--pc-side-column)) 1fr minmax(150px, var(--pc-side-column));
+  align-items: center;
+  column-gap: 2vw;
+
+  background:
+    linear-gradient(90deg, rgba(3, 54, 79, 0.96) 0%, rgba(6, 32, 52, 0.98) 48%, rgba(4, 22, 38, 0.98) 100%);
+
+  border-bottom: 1px solid rgba(216, 183, 106, 0.18);
+  backdrop-filter: blur(14px);
+}
+
+/* 로고 링크 */
+.logoLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  justify-self: start;
+  z-index: 5;
+}
+
+/* 로고 이미지 */
+.logo {
+  width: 15vw;
+  max-width: 350px;
+  min-width: 150px;
+  height: auto;
+  display: block;
+}
+
+/* PC 메뉴 기준 영역
+   - 화면 정중앙 기준으로 고정
+   - 로고/전화번호 폭과 상관없이 메뉴가 중앙에 위치 */
+.menuArea {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+
+  width: var(--pc-menu-width);
+  height: 100%;
+
+  z-index: 3;
+}
+
+/* PC 1차 메뉴 목록
+   - --pc-menu-count 값만큼 동일한 칸 생성
+   - 하위메뉴와 같은 grid 구조를 사용해서 위치를 맞춤 */
+.itemBox {
+  display: grid;
+  grid-template-columns: repeat(var(--pc-menu-count), 1fr);
+
+  width: 100%;
+  height: 100%;
+
+  align-items: center;
+  justify-items: center;
+
+  gap: 0;
+}
+
+/* 각 PC 메뉴 칸 */
+.navItem {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* PC 메뉴 링크 */
+.navLink,
+.consultLink {
+  position: relative;
+  text-decoration: none;
+
+  color: #ffffff;
+  font-size: 0.76vw;
+  font-weight: 700;
+  letter-spacing: 0;
+  white-space: nowrap;
+  font-family: 'Pretendard-Regular', sans-serif;
+
+  transition: color 0.25s ease;
+}
+
+/* PC 메뉴 hover 밑줄 */
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -14px;
+
+  width: 0;
+  height: 2px;
+
+  background: var(--brand-gold);
+  transform: translateX(-50%);
+  transition: width 0.25s ease;
+}
+
+/* PC 메뉴 hover 색상 */
+.navLink:hover {
+  color: var(--brand-gold);
+}
+
+/* PC 메뉴 hover 밑줄 활성화 */
+.navLink:hover::after {
+  width: 100%;
+}
+
+/* PC 전화번호 버튼
+   - 오른쪽 3번째 grid 칸에 고정
+   - 메뉴 absolute 영역보다 위 레이어에 둬서 겹침 방지 */
+.phoneNumber {
+  grid-column: 3;
+  justify-self: end;
+  position: relative;
+  z-index: 6;
+
+  border: 0;
+  outline: none;
+  background: transparent;
+  padding: 0;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35vw;
+
+  color: #ffffff;
+  font-size: 0.98vw;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  font-family: 'Pretendard-Regular', sans-serif;
+
+  cursor: pointer;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+/* 전화번호 hover */
+.phoneNumber:hover {
+  color: var(--brand-gold);
+  transform: translateY(-1px);
+}
+
+/* PC 드롭다운 전체 패널 */
+.dropdownContainer {
+  position: absolute;
+  top: 100%;
+
+  left: calc((100vw - var(--pc-menu-width)) / -2);
+
+  width: 100vw;
+  min-height: 4vw;
+  padding: 1.4vw 0 1.8vw;
+
+  background: rgba(255, 255, 255, 0.985);
+
+  border-top: 1px solid rgba(1, 73, 111, 0.3);
+  border-bottom: 1px solid rgba(1, 73, 111, 0.1);
+
+  box-shadow: 0 18px 32px rgba(2, 19, 33, 0.08);
+
+  z-index: 999;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-8px);
+  transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
+}
+
+/* PC 드롭다운 열린 상태 */
+.headerWrapper:hover .dropdownContainer,
+.dropdownOpen .dropdownContainer {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* PC 드롭다운 내부 컬럼
+   - 상위 메뉴와 같은 --pc-menu-count grid 사용
+   - 각 하위 메뉴가 상위 메뉴 바로 아래에 오도록 맞춤 */
+.dropdownInner {
+  width: var(--pc-menu-width);
+  margin: -0.5vw auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(var(--pc-menu-count), 1fr);
+
+  align-items: flex-start;
+  justify-items: center;
+
+  column-gap: 0;
+  row-gap: 0;
+
+  position: relative;
+}
+
+/* PC 드롭다운 메뉴 그룹 */
+.dropdownGroup {
+  width: 100%;
+  min-height: auto;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  transform: none;
+
+  display: flex;
+  justify-content: center;
+}
+
+/* PC 하위 메뉴 목록 */
+.dropdownList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.72vw;
+}
+
+/* PC 하위 메뉴 링크 */
+.dropdownItem {
+  display: inline-flex;
+  width: fit-content;
+  justify-content: center;
+  text-align: center;
+
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+
+  color: #111111;
+  font-size: 0.68vw;
+  font-weight: 700;
+  line-height: 1.45;
+  font-family: 'Pretendard-Regular', sans-serif;
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+/* PC 하위 메뉴 hover */
+.dropdownItem:hover {
+  color: #00799f;
+}
+
+/* 모바일 전용 클래스 기본값 */
+.mobileHeader,
+.mobileRight,
+.mobileIconBtn,
+.mobileCallBtn,
+.mobileLogoLink,
+.icon {
+  box-sizing: border-box;
+}
+
+/* =========================
+   PC 보정 스타일 1
+   - 901px ~ 1400px 노트북/작은 PC 대응
+========================= */
+@media (min-width: 901px) and (max-width: 1400px) {
+  :root {
+    --pc-menu-width: min(760px, 55vw);
+    --pc-side-column: 20vw;
+    --pc-header-padding: 4vw;
+  }
+
+  .logo {
+    width: 8vw;
+  }
+
+  .navLink,
+  .consultLink {
+    font-size: 0.82vw;
+  }
+
+  .dropdownItem {
+    font-size: 0.74vw;
+  }
+}
+
+/* =========================
+   PC 보정 스타일 2
+   - 901px ~ 1280px 좁은 PC 대응
+========================= */
+@media (min-width: 901px) and (max-width: 1280px) {
+  :root {
+    --pc-menu-width: min(760px, 60vw);
+    --pc-side-column: 18vw;
+  }
+
+  .headerInitial {
+    padding: 0 3vw;
+  }
+
+  .phoneNumber {
+    font-size: 0.9vw;
+  }
+}
+
+/* =========================
+   모바일 스타일
+========================= */
+@media (max-width: 900px) {
+  .gifBanner {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: var(--mobile-banner-height);
+
+    z-index: 1002;
+    background: var(--brand-blue);
+  }
+
+  .gifBanner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .headerInitial {
+    display: none;
+  }
+
+  .dropdownContainer {
+    display: none;
+  }
+
+  .mobileHeader {
+    position: fixed;
+    top: var(--mobile-banner-height);
+    left: 0;
+
+    z-index: 1003;
+
+    width: 100%;
+    height: var(--mobile-header-height);
+    padding: 0 3vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background: rgba(255, 255, 255, 0.98);
+    border-bottom: 1px solid rgba(1, 73, 111, 0.16);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  }
+
+  .mobileLogoLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  .logo {
+    width: 40vw;
+    min-width: unset;
+    max-width: unset;
+  }
+
+  .mobileRight {
+    display: flex;
+    align-items: center;
+    gap: 0.3vw;
+  }
+
+  .mobileIconBtn,
+  .mobileCallBtn {
+    width: 8vw;
+    height: 8vw;
+
+    border: 0;
+    background: transparent;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .icon {
+    color: var(--brand-blue);
+  }
+}

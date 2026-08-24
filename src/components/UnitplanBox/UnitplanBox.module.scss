@@ -1,0 +1,643 @@
+/* =========================
+   UnitPlan 전체 박스
+   - 평면도 탭과 슬라이더를 하나의 재사용 가능한 단위로 관리합니다.
+   - 이미지, 타입명, 설명은 unitPlanData.js에서만 수정합니다.
+========================= */
+.unitPlan {
+  /* 컴포넌트 폭: 부모 영역 안에서 항상 꽉 차게 사용합니다. */
+  width: 100%;
+
+  /* 박스 크기 계산: padding이 생겨도 전체 폭이 흔들리지 않게 합니다. */
+  box-sizing: border-box;
+
+  /* 기본 글자색: 밝은 배경 위에서 안정적인 네이비 톤을 사용합니다. */
+  color: #14202a;
+}
+
+/* =========================
+   헤더 영역
+   - SEO와 AI 검색이 읽기 좋은 h2/설명 구조를 유지합니다.
+========================= */
+.header {
+  /* 아래 여백: 헤더와 탭 사이의 거리입니다. */
+  margin-bottom: 1.4vw;
+}
+
+/* 작은 영문 라벨 */
+.header span {
+  /* 블록 처리: 제목 위에 독립 라벨로 표시합니다. */
+  display: block;
+
+  /* 라벨 아래 여백: 제목과의 간격을 조절합니다. */
+  margin-bottom: 0.55vw;
+
+  /* 글자 크기: 작은 보조 라벨로 보이게 합니다. */
+  font-size: 1vw;
+
+  /* 글자 굵기: 작은 글자의 선명도를 확보합니다. */
+  font-weight: 900;
+
+  /* 자간: 영문 라벨을 정돈된 느낌으로 보여줍니다. */
+  letter-spacing: 0.16em;
+
+  /* 라벨 색상: 골드 포인트로 프리미엄 톤을 유지합니다. */
+  color: #b8893f;
+}
+
+
+/* 제목 */
+.header h2 {
+  /* 기본 여백 제거: 주변 간격을 명확히 관리합니다. */
+  margin: 0;
+
+  /* 제목 크기: 부모 섹션 안에서 과하게 크지 않게 조절합니다. */
+  font-size: 1.45vw;
+
+  /* 제목 굵기: 섹션 내 소제목으로 선명하게 보이게 합니다. */
+  font-weight: 800;
+
+  /* 줄 높이: 두 줄 제목에도 안정적으로 보입니다. */
+  line-height: 1.3;
+
+  /* 제목 색상: 브랜드 네이비를 사용합니다. */
+  color: #01496f;
+}
+
+/* 설명문 */
+.header p {
+  /* 설명 위 여백: 제목과 설명 사이의 호흡입니다. */
+  margin: 0.75vw 0 0;
+
+  /* 설명 폭: 너무 긴 줄이 되지 않도록 제한합니다. */
+  max-width: 40vw;
+
+  /* 글자 크기: 보조 설명으로 읽기 좋은 크기입니다. */
+  font-size: 0.78vw;
+
+  /* 줄 높이: 긴 설명의 가독성을 높입니다. */
+  line-height: 1.7;
+
+  /* 글자 색상: 제목보다 낮은 위계로 처리합니다. */
+  color: rgba(20, 32, 42, 0.66);
+
+  /* 한글 줄바꿈: 문장이 어색하게 쪼개지는 것을 줄입니다. */
+  word-break: keep-all;
+}
+
+/* =========================
+   탭 리스트
+   - 평면 타입을 빠르게 전환하는 영역입니다.
+========================= */
+.tabList {
+  /* 플렉스 배치: 탭을 가로로 정렬합니다. */
+  display: flex;
+
+  /* 줄바꿈 허용: 타입이 늘어나도 다음 줄로 자연스럽게 넘어갑니다. */
+  flex-wrap: wrap;
+
+  /* 탭 간격: 값을 키우면 버튼 사이가 더 여유로워집니다. */
+  gap: 0.55vw;
+
+  /* 아래 여백: 탭과 이미지 뷰어 사이의 거리입니다. */
+  margin-bottom: 1.2vw;
+}
+
+/* 기본 탭 버튼 */
+.tab,
+.activeTab {
+  /* 버튼 높이: 탭이 바뀌어도 레이아웃 높이가 흔들리지 않게 합니다. */
+  min-height: 2.45vw;
+
+  /* 버튼 최소 폭: 짧은 타입명도 버튼 크기가 너무 작아지지 않게 합니다. */
+  min-width: 5.2vw;
+
+  /* 버튼 안쪽 여백: 클릭 영역과 시각 여백을 확보합니다. */
+  padding: 0.55vw 1.2vw;
+
+  /* 버튼 테두리: 기본/활성 상태 모두 같은 두께로 유지해 흔들림을 막습니다. */
+  border: 1px solid rgba(1, 73, 111, 0.16);
+
+  /* 버튼 모서리: 과하게 둥글지 않게 8px 이하로 유지합니다. */
+  border-radius: 8px;
+
+  /* 버튼 글자 크기: 타입명이 명확히 보이는 크기입니다. */
+  font-size: 0.78vw;
+
+  /* 버튼 글자 굵기: 클릭 가능한 요소임을 분명히 합니다. */
+  font-weight: 900;
+
+  /* 폰트 상속: 프로젝트 기본 폰트와 통일합니다. */
+  font-family: inherit;
+
+  /* 클릭 커서: 탭이 조작 가능함을 알려줍니다. */
+  cursor: pointer;
+
+  /* 전환: 탭 변경과 hover가 부드럽게 보이도록 합니다. */
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* 비활성 탭 */
+.tab {
+  /* 비활성 배경: 밝은 배경 위에서 은은하게 구분합니다. */
+  background: rgba(255, 255, 255, 0.7);
+
+  /* 비활성 글자색: 브랜드 네이비를 유지합니다. */
+  color: #01496f;
+}
+
+/* 비활성 탭 hover */
+.tab:hover {
+  /* hover 배경: 마우스가 올라간 탭을 더 선명하게 만듭니다. */
+  background: #fff;
+
+  /* hover 테두리: 골드 포인트로 현재 위치를 보여줍니다. */
+  border-color: rgba(184, 137, 63, 0.42);
+}
+
+/* 활성 탭 */
+.activeTab {
+  /* 활성 배경: 선택된 타입을 강하게 보여줍니다. */
+  background: #01496f;
+
+  /* 활성 글자색: 어두운 배경에서 선명하게 보입니다. */
+  color: #fff;
+
+  /* 활성 테두리: 배경과 맞춰 버튼이 단단해 보이게 합니다. */
+  border-color: #01496f;
+}
+
+/* =========================
+   이미지 뷰어
+   - 좌우 화살표와 평면도 이미지를 포함합니다.
+========================= */
+.viewer {
+  /* 그리드 배치: 좌측 화살표, 이미지, 우측 화살표를 고정 폭으로 배치합니다. */
+  display: grid;
+
+  /* 열 구성: 화살표 영역은 고정, 이미지 영역은 유동입니다. */
+  grid-template-columns: 3.2vw minmax(0, 1fr) 3.2vw;
+
+  /* 열 간격: 화살표와 이미지 사이의 거리입니다. */
+  gap: 0.8vw;
+
+  /* 세로 정렬: 버튼과 이미지가 중앙에 맞습니다. */
+  align-items: center;
+
+  /* 뷰어 폭: 부모 폭을 그대로 사용합니다. */
+  width: 100%;
+}
+
+/* 화살표 버튼 */
+.arrowButton {
+  /* 버튼 크기: 클릭 영역을 안정적으로 고정합니다. */
+  width: 3.2vw;
+  height: 3.2vw;
+
+  /* 버튼 배치: 아이콘을 중앙에 정렬합니다. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 버튼 배경: 밝은 배경 위에서 은은하게 보입니다. */
+  background: #fff;
+
+  /* 버튼 테두리: 카드형 뷰어와 어울리게 얇게 처리합니다. */
+  border: 1px solid rgba(1, 73, 111, 0.14);
+
+  /* 버튼 모서리: 8px 이하로 정돈합니다. */
+  border-radius: 8px;
+
+  /* 아이콘 색상: 브랜드 골드로 조작감을 줍니다. */
+  color: #b8893f;
+
+  /* 버튼 커서: 클릭 가능한 상태를 보여줍니다. */
+  cursor: pointer;
+
+  /* 전환: hover 반응을 부드럽게 합니다. */
+  transition: transform 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* 화살표 아이콘 */
+.arrowButton svg {
+  /* 아이콘 크기: 버튼 내부에서 균형 있게 보이게 합니다. */
+  width: 1.35vw;
+  height: 1.35vw;
+}
+
+/* 화살표 hover */
+.arrowButton:hover {
+  /* hover 이동: 버튼이 가볍게 반응합니다. */
+  transform: translateY(-2px);
+
+  /* hover 색상: 브랜드 네이비로 전환됩니다. */
+  color: #01496f;
+
+  /* hover 테두리: 현재 조작 가능 상태를 강조합니다. */
+  border-color: rgba(1, 73, 111, 0.34);
+}
+
+/* 비활성 화살표 */
+.disabled {
+  /* 비활성 투명도: 더 이상 이동할 수 없음을 보여줍니다. */
+  opacity: 0.34;
+
+  /* 비활성 커서: 클릭 불가 상태를 명확히 합니다. */
+  cursor: not-allowed;
+}
+
+/* 비활성 hover 제거 */
+.disabled:hover {
+  /* 비활성 상태에서는 위치가 움직이지 않게 합니다. */
+  transform: none;
+}
+
+/* 이미지 영역 */
+.imageArea {
+  /* 이미지 프레임 배경: 평면도가 선명하게 보이도록 흰색을 사용합니다. */
+  background: #fff;
+
+  /* 이미지 프레임 테두리: 평면도 영역을 고급스럽게 구분합니다. */
+  border: 1px solid rgba(184, 137, 63, 0.34);
+
+  /* 프레임 모서리: 프로젝트 카드 규칙에 맞춰 8px 이하로 유지합니다. */
+  border-radius: 8px;
+
+  /* 프레임 안쪽 여백: 평면도가 테두리에 붙지 않게 합니다. */
+  padding: 1vw;
+
+  /* 박스 크기 계산: padding 포함으로 폭을 안정화합니다. */
+  box-sizing: border-box;
+
+  /* 고정 비율: 이미지가 바뀌어도 뷰어 높이가 흔들리지 않게 합니다. */
+  aspect-ratio: 16 / 10;
+
+  /* 배치: 이미지를 중앙에 놓습니다. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 그림자: 뷰어가 배경에서 살짝 떠 보이게 합니다. */
+  box-shadow: 0 18px 42px rgba(20, 32, 42, 0.08);
+}
+
+/* 평면도 이미지 */
+.planImage {
+  /* 이미지 최대 폭: 프레임 안에서 넘치지 않게 합니다. */
+  max-width: 100%;
+
+  /* 이미지 최대 높이: 고정 비율 프레임 안에 안정적으로 들어갑니다. */
+  max-height: 100%;
+
+  /* 이미지 비율 유지: 평면도 왜곡을 방지합니다. */
+  object-fit: contain;
+
+  /* 이미지 표시: 하단 여백 흔들림을 막습니다. */
+  display: block;
+
+  /* 애니메이션: 탭 변경 시 과하지 않은 fade/slide-up만 사용합니다. */
+  animation: unitPlanFadeUp 0.45s ease both;
+}
+
+/* =========================
+   선택된 평면 정보
+========================= */
+.info {
+  /* 위 여백: 이미지와 설명 사이의 거리입니다. */
+  margin-top: 1.2vw;
+
+  /* 왼쪽 여백: 화살표 폭만큼 보정해 이미지 시작점과 맞춥니다. */
+  padding-left: 4vw;
+}
+
+/* 타입 라벨 */
+.info span {
+  /* 블록 처리: 제목 위 라벨로 표시합니다. */
+  display: block;
+
+  /* 글자 크기: 작은 타입 라벨입니다. */
+  font-size: 0.68vw;
+
+  /* 글자 굵기: 타입을 선명하게 보여줍니다. */
+  font-weight: 900;
+
+  /* 자간: 영문/숫자 라벨의 정돈된 느낌을 만듭니다. */
+  letter-spacing: 0.08em;
+
+  /* 라벨 색상: 골드 포인트입니다. */
+  color: #b8893f;
+}
+
+/* 선택된 평면 제목 */
+.info h3 {
+  /* 제목 여백: 라벨과 설명 사이 간격을 관리합니다. */
+  margin: 0.35vw 0 0.25vw;
+
+  /* 제목 크기: 선택된 평면명이 잘 보이도록 합니다. */
+  font-size: 1vw;
+
+  /* 제목 굵기: 정보 제목의 위계를 세웁니다. */
+  font-weight: 900;
+
+  /* 제목 색상: 브랜드 네이비입니다. */
+  color: #01496f;
+}
+
+/* 선택된 평면 설명 */
+.info p {
+  /* 기본 여백 제거: 정보 영역 높이를 안정적으로 유지합니다. */
+  margin: 0;
+
+  /* 설명 크기: 짧은 보조 문구에 맞는 크기입니다. */
+  font-size: 0.78vw;
+
+  /* 줄 높이: 설명 가독성을 확보합니다. */
+  line-height: 1.55;
+
+  /* 설명 색상: 제목보다 낮은 위계입니다. */
+  color: rgba(20, 32, 42, 0.64);
+}
+
+/* =========================
+   애니메이션
+   - 홈페이지 공통 원칙에 맞춰 fade + slide-up만 사용합니다.
+========================= */
+@keyframes unitPlanFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   PC 보정 스타일
+========================= */
+
+
+/* =========================
+   PC final layout correction
+   - Keeps the premium left message panel and large right unit-plan viewer on desktop.
+========================= */
+@media (min-width: 901px) {
+  .unitPlan {
+    /* PC 전체 폭: 다른 메인 섹션과 같은 스케일로 보이도록 유니트 박스 자체를 넓게 사용합니다. */
+    width: 100%;
+
+    /* PC 최대 폭: 초대형 모니터에서 내용이 과하게 벌어지지 않도록 상한선을 둡니다. */
+    max-width: 1640px;
+
+    display: grid;
+    grid-template-columns: minmax(300px, 0.32fr) minmax(0, 0.68fr);
+    grid-template-rows: auto auto 1fr;
+    column-gap: 2.6vw;
+    row-gap: 0.9vw;
+
+    /* PC 안쪽 여백: 좌측 브랜드 패널과 우측 평면도가 붙어 보이지 않도록 공간을 확보합니다. */
+    padding: 2vw;
+
+    /* PC 배경: 섹션 배경과 자연스럽게 이어지면서도 프리미엄 박스처럼 보이게 합니다. */
+    background: linear-gradient(135deg, rgba(1, 73, 111, 0.08), transparent 36%), rgba(255, 255, 255, 0.64);
+    border: 1px solid rgba(1, 73, 111, 0.1);
+    border-radius: 8px;
+    box-shadow: 0 26px 60px rgba(20, 32, 42, 0.08);
+  }
+
+  .header {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    min-height: 100%;
+
+    /* PC 좌측 패널 여백: 문구가 고급스럽게 숨 쉴 수 있도록 넉넉하게 둡니다. */
+    padding: 2.7vw;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(145deg, rgba(1, 73, 111, 0.96), rgba(6, 16, 25, 0.96)), #01496f;
+    border-radius: 8px;
+    color: #fff;
+  }
+
+  .header span {
+    color: #d4af37;
+  }
+
+  .header h2 {
+    font-size: 1.5vw;
+    color: #fff;
+  }
+
+  .header p {
+    max-width: none;
+    margin-top: 1.4vw;
+    color: rgba(255, 255, 255, 0.74);
+  }
+
+  .tabList {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+
+    /* PC 탭 간격: 평면 타입 버튼이 이미지 상단의 조작 영역처럼 보이게 정돈합니다. */
+    margin-bottom: 0;
+  }
+
+  .viewer {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  .imageArea {
+    /* PC 평면도 비율: 이미지 영역을 더 넓고 낮게 잡아 한 화면 안에서 답답함을 줄입니다. */
+    aspect-ratio: 16 / 8.25;
+
+    /* PC 평면도 안쪽 여백: 이미지가 프레임 안에서 커 보이도록 여백을 줄입니다. */
+    padding: 0.65vw;
+  }
+
+  .info {
+    grid-column: 2;
+    grid-row: 2;
+    margin-top: 0;
+
+    /* PC 선택 정보 위치: 평면도 위에서 현재 선택 타입을 바로 확인하게 합니다. */
+    align-self: stretch;
+
+    /* PC 선택 정보 여백: 얇은 바 형태로 정리해 이미지보다 시선이 튀지 않게 합니다. */
+    padding: 0.9vw 1.2vw;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(1, 73, 111, 0.1);
+    border-radius: 8px;
+  }
+
+  .info h3,
+  .info p {
+    /* PC 선택 정보 줄 간격: 작은 정보 바 안에서 텍스트가 과하게 커지지 않도록 조정합니다. */
+    margin-top: 0.12vw;
+  }
+}
+
+/* =========================
+   모바일 스타일
+========================= */
+
+
+/* =========================
+   모바일 레이아웃
+   - PC를 단순 축소하지 않고 탭과 이미지 확인 흐름을 세로형으로 조정합니다.
+========================= */
+@media (max-width: 900px) {
+  .header {
+    /* 모바일 헤더 아래 여백: 탭과의 간격을 키웁니다. */
+    margin-bottom: 4vw;
+  }
+
+  .header span {
+    /* 모바일 라벨 크기: 작은 화면에서 읽기 좋게 합니다. */
+    font-size: 3vw;
+  }
+
+  .header h2 {
+    /* 모바일 제목 크기: 섹션 내부 제목으로 적절한 크기입니다. */
+    font-size: 3vw;
+  }
+
+  .header p {
+    /* 모바일 설명 폭: 화면 폭 전체를 사용합니다. */
+    max-width: none;
+
+    /* 모바일 설명 위 여백입니다. */
+    margin-top: 1vw;
+
+    /* 모바일 설명 크기: 긴 문장이 읽기 편한 크기입니다. */
+    font-size: 2vw;
+  }
+
+  .tabList {
+    /* 모바일 탭 간격: 손가락 터치 간격을 확보합니다. */
+    gap: 2vw;
+
+    /* 모바일 탭 아래 여백입니다. */
+    margin-bottom: 4vw;
+  }
+
+  .tab,
+  .activeTab {
+    /* 모바일 탭 높이: 터치하기 쉬운 크기입니다. */
+    min-height: 8vw;
+
+    /* 모바일 탭 최소 폭: 타입명이 안정적으로 들어갑니다. */
+    min-width: 15vw;
+
+    /* 모바일 탭 여백: 버튼 안쪽 공간입니다. */
+    padding: 2.4vw 3.2vw;
+
+    /* 모바일 탭 글자 크기입니다. */
+    font-size: 3vw;
+  }
+
+  .viewer {
+    /* 모바일 뷰어 열 구성: 화살표를 작게 두고 이미지 영역을 넓힙니다. */
+    grid-template-columns: 9vw minmax(0, 1fr) 9vw;
+
+    /* 모바일 뷰어 간격입니다. */
+    gap: 2vw;
+  }
+
+  .arrowButton {
+    /* 모바일 화살표 버튼 크기: 터치 가능한 크기입니다. */
+    width: 9vw;
+    height: 9vw;
+  }
+
+  .arrowButton svg {
+    /* 모바일 화살표 아이콘 크기입니다. */
+    width: 4vw;
+    height: 4vw;
+  }
+
+  .imageArea {
+    /* 모바일 이미지 프레임 여백: 평면도가 답답하지 않게 합니다. */
+    padding: 2.5vw;
+
+    /* 모바일 비율: 세로 화면에서 평면도가 충분히 크게 보이게 합니다. */
+    aspect-ratio: 1 / 1.05;
+  }
+
+  .info {
+    /* 모바일 정보 위 여백: 이미지와 설명 사이의 거리입니다. */
+    margin-top: 4vw;
+
+    /* 모바일 정보 왼쪽 보정 제거: 전체 폭 기준으로 정렬합니다. */
+    padding-left: 0;
+  }
+
+  .info span {
+    /* 모바일 타입 라벨 크기입니다. */
+    font-size: 2.7vw;
+  }
+
+  .info h3 {
+    /* 모바일 평면 제목 크기입니다. */
+    margin-top: 1vw;
+    font-size: 4vw;
+  }
+
+  .info p {
+    /* 모바일 설명 크기입니다. */
+    font-size: 3vw;
+  }
+}
+
+
+/* =========================
+   모바일 유니트 화면 최적화
+   - 평면도 탭과 이미지가 모바일 화면 폭 안에서 잘리지 않도록 보정합니다.
+========================= */
+@media (max-width: 900px) {
+  .unitPlan {
+    /* 모바일 전체 폭: 부모 섹션 안에서 가로 스크롤 없이 꽉 차게 사용합니다. */
+    width: 100%;
+  }
+
+  .header h2 {
+    /* 모바일 유니트 제목 크기: 긴 제목이 과하게 커져 잘리지 않도록 제한합니다. */
+    font-size: 2w;
+  }
+
+  .header p {
+    /* 모바일 유니트 설명 크기: 탭과 이미지가 아래로 과하게 밀리지 않게 합니다. */
+    font-size: 2vw;
+  }
+
+  .tab,
+  .activeTab {
+    /* 모바일 탭 크기: 3~4개 타입 버튼이 한 줄 또는 자연스러운 두 줄로 정렬되게 합니다. */
+    min-height: 44px;
+    min-width: 74px;
+    padding: 10px 20px;
+    font-size: 2.5vw;
+  }
+
+  .viewer {
+    /* 모바일 평면도 조작 영역: 좌우 버튼 때문에 이미지가 지나치게 작아지는 문제를 줄입니다. */
+    grid-template-columns: 42px minmax(0, 1fr) 42px;
+    gap: 8px;
+  }
+
+  .arrowButton {
+    /* 모바일 화살표 버튼: 터치 가능 크기를 유지하면서 이미지 영역을 더 확보합니다. */
+    width: 42px;
+    height: 42px;
+  }
+
+  .imageArea {
+    /* 모바일 평면도 비율: 정사각형에 가깝게 보여 이미지가 세로로 잘리지 않게 합니다. */
+    aspect-ratio: 1 / 0.92;
+    padding: 10px;
+  }
+}

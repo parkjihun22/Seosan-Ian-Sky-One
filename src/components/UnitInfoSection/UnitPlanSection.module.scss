@@ -1,0 +1,132 @@
+/* UnitPlanSection.module.scss */
+
+/* ─── Wrapper ───────────────────────────────────────────────────────── */
+.wrapper {
+  width: 100%;
+  padding: 4vw 7vw;
+  background: #f2f2f2;
+  box-sizing: border-box;
+}
+
+/* ─── Header ────────────────────────────────────────────────────────── */
+.header {
+  text-align: center;
+  .preTitle {
+    margin-top: 2vw;
+    font-size: 3.5vw;
+    color: #000000;
+    margin-bottom: 1vw;
+  }
+  .line {
+    width: 12vw;
+    height: 0.3vw;
+    background: #000000;
+    margin: 1vw auto;
+  }
+  .title {
+    font-size: 5vw;
+    margin-top: 5vw;
+    margin-bottom: 3vw;
+  }
+}
+
+/* ─── Banner ────────────────────────────────────────────────────────── */
+.banner {
+  margin: 3vw 0;
+  text-align: center;
+
+  .bannerImg {
+    width: 100%;
+    border-radius: 2vw;
+    display: inline-block;
+  }
+}
+
+/* ─── Menu Container ───────────────────────────────────────────────── */
+.menuContainer {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* ─── Accordion Item ───────────────────────────────────────────────── */
+.accordionItem {
+  border-top: 0.3vw solid rgba(0, 0, 0, 0.1);
+  &:last-child {
+    border-bottom: 0.1vw solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* ─── Accordion Header ─────────────────────────────────────────────── */
+.accordionHeader {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 3vw 0;             /* 세로 패딩 살짝 더 늘림 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 4vw;             /* 글자 크기 소폭 상향 */
+  color: #01496f;
+  font-weight: 700;               /* 연한 민트 계열로 변경 */
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &.active,
+  &:hover {
+    color: #01496f;             /* 좀 더 진한 민트톤 */
+    font-weight: 700;
+  }
+}
+
+/* ─── Arrow Icon ──────────────────────────────────────────────────── */
+.arrow {
+  display: inline-block;
+  width: 3vw;
+  height: 3vw;
+  border-right: 0.5vw solid currentColor;
+  border-bottom: 0.5vw solid currentColor;
+  transition: transform 0.2s ease;
+
+  &.down {
+    transform: rotate(45deg);
+  }
+  &.up {
+    transform: rotate(-135deg);
+  }
+}
+
+.accordionContent {
+  margin-top: 2vw;
+
+  .contentImage {
+    width: 100%;
+    border-radius: 2vw;
+    display: block;
+  }
+}
+
+/* ─── Accordion Content ───────────────────────────────────────────── */
+.accordionContent {
+  padding: 2vw 0;
+}
+
+
+
+/* ─── VR Section Container ────────────────────────────────────────── */
+.videoContainer {
+  position: relative;
+  padding-top: 56.25%;        /* 16:9 비율 */
+  margin: 0 auto;
+  border-radius: 2vw;
+  overflow: hidden;
+}
+
+/* • VR iframe */
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}

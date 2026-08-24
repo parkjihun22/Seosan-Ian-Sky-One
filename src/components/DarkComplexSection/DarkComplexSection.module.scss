@@ -1,0 +1,89 @@
+.wrapper {
+    /* 패딩, 텍스트 컬러 등 기본 세팅 */
+    padding: 5vw 4vw;
+    color: #fff;
+  }
+  
+  .header {
+    text-align: center;
+    .preTitle {
+      font-size: 3vw;
+      color: #ddd;
+      margin-bottom: 1vw;
+    }
+    .line {
+      width: 12vw;
+      height: 0.3vw;
+      background: #fff;
+      margin: 2vw auto;
+    }
+    .mainTitle {
+      font-size: 5vw;
+      margin-bottom: 3vw;
+    }
+  }
+  
+  .accordionItem {
+    border-bottom: 0.2vw solid rgba(255, 255, 255, 0.3);
+    & + & {
+      margin-top: 3vw;
+    }
+  }
+  
+  .accordionHeader {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 3vw 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 4vw;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  
+    &.active,
+    &:hover {
+      color: #01496f;
+    }
+  }
+  
+  .arrow {
+    display: inline-block;
+    width: 3vw;
+    height: 3vw;
+    border-right: 0.5vw solid currentColor;
+    border-bottom: 0.5vw solid currentColor;
+    transition: transform 0.2s ease;
+  
+    &.down {
+      transform: rotate(45deg);
+    }
+    &.up {
+      transform: rotate(-135deg);
+    }
+  }
+  
+  .accordionContent {
+    margin-top: 2vw;
+  
+    .contentImage {
+      width: 100%;
+      border-radius: 2vw;
+      display: block;
+    }
+  }
+
+
+.banner {
+    margin: 3vw 0;
+    text-align: center;
+  
+    .bannerImg {
+      width: 100%;
+      border-radius: 2vw;
+      display: inline-block;
+    }
+  }

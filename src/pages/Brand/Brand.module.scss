@@ -1,0 +1,166 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bener {
+    width: 100vw;
+    height: auto;
+}
+
+/* 이미지 페이드 인 애니메이션 */
+.image {
+    margin: 4vw 0;
+    width: 60%;
+    height: auto;
+    opacity: 0;  /* 처음에 이미지 숨기기 */
+    transform: translateY(20px); /* 이미지 아래 위치 설정 */
+    animation: fadeIn 1s forwards; /* 페이드 인 애니메이션 추가 */
+    transition: transform 1s, opacity 1s; 
+}
+
+/* 텍스트 박스 애니메이션 */
+.textBox {
+    margin: 3vw 0 0 0;
+    text-align: center;
+    font-size: 2.5vw;
+    opacity: 0; /* 처음에는 텍스트 숨기기 */
+    animation: fadeIn 1s 0.2s forwards; /* 텍스트 박스에 지연된 페이드 인 애니메이션 */
+}
+
+.textBox div:nth-of-type(1) {
+    font-size: 1.8vw;
+    font-weight: 200;
+}
+
+.textBox div:nth-of-type(2) {
+    font-size: 2.3vw;
+    margin-top: 0.5vw;
+    font-weight: 800;
+    color: #01496f;
+}
+
+/* 비디오 컨테이너 스타일 */
+.videoContainer {
+    margin-top: 1vw;
+    margin-bottom: 3vw;
+}
+
+/* 페이드 인 애니메이션 정의 */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================
+   모바일 스타일
+========================= */
+
+
+/* 모바일 스타일 */
+@media (max-width: 768px) {
+    .image {
+        width: 90%;
+        transform: translateY(20px);
+    }
+    .textBox {
+        font-size: 10vw;
+    }
+}
+
+
+/* 모바일 비디오 컨테이너 스타일 */
+@media (max-width: 768px) {
+    .videoContainer {
+        margin-top: 3vw;
+        margin-bottom: 5vw;
+    }
+}
+
+/* =========================
+   페이지 공통 문구 / 안내 박스 - PC 보정
+   - MenuBar 아래 대표 문구의 크기와 간격을 통일합니다.
+========================= */
+@media (min-width: 901px) {
+    .textBox {
+        /* 문구 영역 폭: 페이지 제목이 너무 길게 퍼지지 않게 합니다. */
+        width: min(88vw, 1180px);
+
+        /* 문구 위아래 여백: 메뉴바와 본문 이미지 사이의 호흡입니다. */
+        margin: 4.2vw auto 2.4vw;
+
+        /* 문구 정렬: 대표 문구는 중앙 정렬합니다. */
+        text-align: center;
+
+        /* 문구 등장 효과: 기존 fade 느낌은 유지합니다. */
+        opacity: 1;
+    }
+
+    .textBox div:nth-of-type(1) {
+        /* 첫 번째 문구 크기: 보조 제목 크기입니다. */
+        font-size: 2.2vw;
+        line-height: 1.35;
+        font-weight: 500;
+        color: #14202a;
+    }
+
+    .textBox div:nth-of-type(2) {
+        /* 두 번째 문구 크기: 브랜드 포인트 문구 크기입니다. */
+        margin-top: 0.6vw;
+        font-size: 2.6vw;
+        line-height: 1.25;
+        font-weight: 900;
+        color: #01496f;
+    }
+
+    .textBox div:nth-of-type(3) {
+        /* 세 번째 문구 크기: 설명문 크기입니다. */
+        margin-top: 1.05vw;
+        font-size: 1.08vw;
+        line-height: 1.75;
+        font-weight: 500;
+        color: rgba(20, 32, 42, 0.68);
+        word-break: keep-all;
+    }
+}
+
+/* =========================
+   페이지 공통 문구 / 안내 박스 - Mobile 보정
+   - 모바일 전용 문구 크기와 간격입니다.
+========================= */
+@media (max-width: 900px) {
+    .textBox {
+        /* 모바일 문구 폭: 좌우 여백을 확보합니다. */
+        width: min(90vw, 560px);
+
+        /* 모바일 문구 여백: 메뉴바 아래 공간입니다. */
+        margin: 7vw auto 4.5vw;
+
+        /* 기존 큰 모바일 폰트 값을 덮어쓰기 위한 기본값입니다. */
+        font-size: initial;
+    }
+
+    .textBox div:nth-of-type(1) {
+        /* 모바일 첫 번째 문구 크기입니다. */
+        font-size: 3vw;
+        line-height: 1.35;
+    }
+
+    .textBox div:nth-of-type(2) {
+        /* 모바일 핵심 문구 크기입니다. */
+        margin-top: 1.4vw;
+        font-size: 3vw;
+        line-height: 1.34;
+    }
+
+    .textBox div:nth-of-type(3) {
+        /* 모바일 설명 문구 크기입니다. */
+        margin-top: 3vw;
+        font-size: 2.5vw;
+        line-height: 1.72;
+    }
+}

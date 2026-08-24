@@ -1,0 +1,499 @@
+/* =========================
+   Community 전체 섹션
+   - 단지 배치, 특화 설계, 커뮤니티를 탭으로 보여주는 재사용 섹션입니다.
+   - 문구와 이미지는 communityData.js에서만 수정합니다.
+========================= */
+.community {
+  /* 섹션 높이: PC에서 한 화면 안에 단지 안내가 꽉 차게 보입니다. */
+  min-height: 100vh;
+
+  /* 위아래 여백: 값을 키우면 단지 섹션이 더 여유롭게 보입니다. */
+  padding: 6vw 0;
+
+  /* 위치 기준: 오버레이와 콘텐츠를 겹쳐 배치합니다. */
+  position: relative;
+
+  /* 배경 이미지 설정: 이미지 경로는 communityData.js에서 관리합니다. */
+  background-size: cover;
+  background-position: center;
+
+  /* 넘침 제어: 이미지 애니메이션으로 가로 스크롤이 생기지 않게 합니다. */
+  overflow: hidden;
+
+  /* 기본 글자색: 어두운 배경 위에서 흰색을 사용합니다. */
+  color: #fff;
+}
+
+/* 배경 오버레이 */
+.community__overlay {
+  /* 위치 기준: 배경 이미지 위 전체를 덮습니다. */
+  position: absolute;
+  inset: 0;
+
+  /* 어두운 오버레이: 텍스트 가독성과 고급스러운 분위기를 만듭니다. */
+  background:
+    linear-gradient(90deg, rgba(3, 15, 24, 0.9), rgba(3, 15, 24, 0.62)),
+    rgba(0, 0, 0, 0.28);
+
+  /* 클릭 방지: 오버레이가 탭 조작을 막지 않게 합니다. */
+  pointer-events: none;
+}
+
+/* 내부 컨테이너 */
+.community__inner {
+  /* 위치 기준: 오버레이보다 콘텐츠가 위에 보이게 합니다. */
+  position: relative;
+  z-index: 1;
+
+  /* 콘텐츠 폭: 대형 화면에서 과도하게 퍼지지 않게 제한합니다. */
+  width: min(88vw, 1580px);
+
+  /* 가운데 정렬: 화면 중앙 기준으로 섹션을 정돈합니다. */
+  margin: 0 auto;
+}
+
+/* =========================
+   섹션 헤더
+========================= */
+.community__head {
+  /* 헤더 폭: 긴 설명이 너무 넓게 퍼지지 않도록 제한합니다. */
+  max-width: 760px;
+
+  /* 아래 여백: 헤더와 콘텐츠 그리드 사이의 거리입니다. */
+  margin-bottom: 3vw;
+
+  /* 진입 전 상태: 화면 진입 시 slide-up 애니메이션을 준비합니다. */
+  opacity: 0;
+  transform: translateY(36px);
+
+  /* 전환: 과하지 않은 fade + slide-up만 사용합니다. */
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+/* 활성화 후 헤더 */
+.community--active .community__head {
+  /* 활성화 투명도: 헤더를 보이게 합니다. */
+  opacity: 1;
+
+  /* 활성화 위치: 원래 자리로 올라옵니다. */
+  transform: translateY(0);
+}
+
+/* 영문 라벨 */
+.community__head span {
+  /* 블록 처리: 제목 위에 독립 라벨로 배치합니다. */
+  display: block;
+
+  /* 아래 여백: 제목과의 간격입니다. */
+  margin-bottom: 1vw;
+
+  /* 글자 크기: 작은 섹션 라벨입니다. */
+  font-size: 0.78vw;
+
+  /* 글자 굵기: 어두운 배경에서 선명하게 보이게 합니다. */
+  font-weight: 900;
+
+  /* 자간: 영문 라벨의 정돈된 느낌을 만듭니다. */
+  letter-spacing: 0.18em;
+
+  /* 라벨 색상: 골드 포인트로 프리미엄 톤을 만듭니다. */
+  color: #d4af37;
+}
+
+/* 제목 */
+.community__head h2 {
+  /* 기본 여백 제거: 간격은 각 요소에서 관리합니다. */
+  margin: 0;
+
+  /* 제목 크기: 단지 섹션의 대표 문구로 충분히 보이게 합니다. */
+  font-size: 3vw;
+
+  /* 제목 굵기: 고급스럽고 선명한 무게감입니다. */
+  font-weight: 650;
+
+  /* 줄 높이: 제목이 두 줄이 되어도 안정적으로 보입니다. */
+  line-height: 1.16;
+
+  /* 자간: 한글 제목은 기본 자간으로 가독성을 유지합니다. */
+  letter-spacing: 0;
+}
+
+/* 설명 */
+.community__head p {
+  /* 설명 위 여백: 제목과 본문 사이의 호흡입니다. */
+  margin: 1.2vw 0 0;
+
+  /* 글자 크기: 설명문으로 읽기 좋은 크기입니다. */
+  font-size: 0.95vw;
+
+  /* 줄 높이: 긴 설명의 가독성을 높입니다. */
+  line-height: 1.8;
+
+  /* 글자 색상: 제목보다 낮은 위계로 부드럽게 처리합니다. */
+  color: rgba(255, 255, 255, 0.72);
+
+  /* 한글 줄바꿈: 문장이 어색하게 쪼개지는 것을 줄입니다. */
+  word-break: keep-all;
+}
+
+/* =========================
+   콘텐츠 그리드
+========================= */
+.community__grid {
+  /* 그리드 배치: 좌측 대표 이미지와 우측 탭 패널을 나란히 둡니다. */
+  display: grid;
+
+  /* 열 비율: 대표 이미지를 크게, 탭 패널을 정보 영역으로 배치합니다. */
+  grid-template-columns: 0.95fr 1.05fr;
+
+  /* 열 간격: 두 영역 사이의 여백입니다. */
+  gap: 2vw;
+
+  /* 세로 정렬: 두 영역의 높이를 맞춥니다. */
+  align-items: stretch;
+
+  /* 진입 전 상태: 콘텐츠가 아래에서 올라오는 애니메이션을 준비합니다. */
+  opacity: 0;
+  transform: translateY(42px);
+
+  /* 전환: 홈페이지 애니메이션 원칙에 맞춰 fade + slide-up만 사용합니다. */
+  transition: opacity 0.85s ease 0.1s, transform 0.85s ease 0.1s;
+}
+
+/* 활성화 후 콘텐츠 */
+.community--active .community__grid {
+  /* 활성화 투명도: 콘텐츠가 보이게 합니다. */
+  opacity: 1;
+
+  /* 활성화 위치: 원래 자리로 올라옵니다. */
+  transform: translateY(0);
+}
+
+/* 대표 이미지 */
+.community__banner {
+  /* 카드 배경: 이미지 로딩 전에도 영역이 안정적으로 보입니다. */
+  background: rgba(255, 255, 255, 0.08);
+
+  /* 테두리: 어두운 배경에서 이미지 영역을 은은하게 구분합니다. */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  /* 모서리: 카드 규칙에 맞춰 8px 이하로 유지합니다. */
+  border-radius: 8px;
+
+  /* 넘침 제어: 이미지가 라운드 밖으로 나가지 않게 합니다. */
+  overflow: hidden;
+}
+
+.community__banner img {
+  /* 이미지 폭: 카드 전체를 채웁니다. */
+  width: 100%;
+
+  /* 이미지 높이: 우측 패널과 균형을 맞춥니다. */
+  height: 100%;
+
+  /* 최소 높이: PC에서 대표 이미지가 너무 낮아지지 않게 합니다. */
+  min-height: 30vw;
+
+  /* 이미지 맞춤: 프레임을 채우면서 비율을 유지합니다. */
+  object-fit: cover;
+
+  /* 이미지 표시: 하단 여백 흔들림을 막습니다. */
+  display: block;
+}
+
+/* =========================
+   우측 탭 패널
+========================= */
+.community__panel {
+  /* 패널 여백: 탭과 상세 이미지가 숨 쉴 공간을 만듭니다. */
+  padding: 1.5vw;
+
+  /* 박스 크기 계산: padding 포함으로 폭을 안정화합니다. */
+  box-sizing: border-box;
+
+  /* 패널 배경: 어두운 유리 질감으로 프리미엄 톤을 만듭니다. */
+  background: rgba(255, 255, 255, 0.1);
+
+  /* 패널 테두리: 배경과 정보 영역을 구분합니다. */
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  /* 모서리: 8px 이하로 유지합니다. */
+  border-radius: 8px;
+}
+
+/* 탭 리스트 */
+.community__tabs {
+  /* 플렉스 배치: 탭을 가로로 정렬합니다. */
+  display: flex;
+
+  /* 탭 간격: 버튼 사이의 거리입니다. */
+  gap: 0.6vw;
+
+  /* 아래 여백: 탭과 상세 내용 사이 거리입니다. */
+  margin-bottom: 1.3vw;
+}
+
+/* 탭 버튼 */
+.community__tab {
+  /* 버튼 높이: 탭 전환 시 레이아웃 흔들림을 막습니다. */
+  min-height: 2.65vw;
+
+  /* 버튼 여백: 클릭 영역을 확보합니다. */
+  padding: 0.65vw 1.1vw;
+
+  /* 버튼 배경: 비활성 탭은 투명하게 둡니다. */
+  background: rgba(255, 255, 255, 0.08);
+
+  /* 버튼 테두리: 활성/비활성 모두 같은 두께로 유지합니다. */
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  /* 모서리: 8px 이하로 유지합니다. */
+  border-radius: 8px;
+
+  /* 글자색: 어두운 배경에서 읽히도록 흰색 계열입니다. */
+  color: rgba(255, 255, 255, 0.78);
+
+  /* 글자 크기: 탭명 가독성을 확보합니다. */
+  font-size: 0.78vw;
+
+  /* 글자 굵기: 클릭 요소의 선명도를 높입니다. */
+  font-weight: 900;
+
+  /* 폰트 상속: 프로젝트 기본 폰트를 사용합니다. */
+  font-family: inherit;
+
+  /* 클릭 커서: 조작 가능한 요소임을 알려줍니다. */
+  cursor: pointer;
+
+  /* 전환: hover/active 상태가 부드럽게 바뀝니다. */
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* 활성 탭 */
+.community__tab.is-active {
+  /* 활성 배경: 선택된 탭을 골드 톤으로 강조합니다. */
+  background: #d4af37;
+
+  /* 활성 테두리: 배경과 맞춰 단단하게 보이게 합니다. */
+  border-color: #d4af37;
+
+  /* 활성 글자색: 골드 배경 위에서 네이비로 명확하게 보입니다. */
+  color: #061019;
+}
+
+/* 상세 콘텐츠 */
+.community__detail {
+  /* 그리드 배치: 텍스트와 이미지를 세로로 구성합니다. */
+  display: grid;
+
+  /* 행 간격: 설명과 이미지 사이의 거리입니다. */
+  gap: 1.2vw;
+}
+
+/* 상세 텍스트 라벨 */
+.community__text span {
+  /* 블록 처리: 제목 위 라벨로 표시합니다. */
+  display: block;
+
+  /* 라벨 아래 여백입니다. */
+  margin-bottom: 0.5vw;
+
+  /* 라벨 크기입니다. */
+  font-size: 0.68vw;
+
+  /* 라벨 굵기입니다. */
+  font-weight: 900;
+
+  /* 자간: 작은 라벨의 정돈된 느낌입니다. */
+  letter-spacing: 0.12em;
+
+  /* 라벨 색상: 골드 포인트입니다. */
+  color: #d4af37;
+}
+
+/* 상세 제목 */
+.community__text h3 {
+  /* 기본 여백 제거: 간격을 직접 관리합니다. */
+  margin: 0;
+
+  /* 제목 크기: 상세 항목의 핵심 문구입니다. */
+  font-size: 1.45vw;
+
+  /* 제목 굵기: 정보 위계를 분명히 합니다. */
+  font-weight: 800;
+
+  /* 줄 높이: 두 줄 제목도 안정적으로 보입니다. */
+  line-height: 1.35;
+}
+
+/* 상세 설명 */
+.community__text p {
+  /* 설명 위 여백입니다. */
+  margin: 0.75vw 0 0;
+
+  /* 글자 크기: 상세 설명에 맞는 크기입니다. */
+  font-size: 0.85vw;
+
+  /* 줄 높이: 읽기 편한 설명문을 만듭니다. */
+  line-height: 1.75;
+
+  /* 글자 색상: 제목보다 낮은 위계입니다. */
+  color: rgba(255, 255, 255, 0.68);
+
+  /* 한글 줄바꿈: 문장이 어색하게 끊기는 것을 줄입니다. */
+  word-break: keep-all;
+}
+
+/* 상세 이미지 */
+.community__detail img {
+  /* 이미지 폭: 패널 전체를 사용합니다. */
+  width: 100%;
+
+  /* 이미지 높이: 탭 전환 시 패널 높이가 크게 흔들리지 않게 합니다. */
+  height: 18vw;
+
+  /* 이미지 맞춤: 프레임을 채우되 비율을 유지합니다. */
+  object-fit: cover;
+
+  /* 이미지 표시: 하단 여백 흔들림을 막습니다. */
+  display: block;
+
+  /* 모서리: 패널 내부 이미지도 8px 이하로 정리합니다. */
+  border-radius: 8px;
+
+  /* 애니메이션: 탭 변경 시 fade + slide-up만 사용합니다. */
+  animation: communityFadeUp 0.42s ease both;
+}
+
+/* 애니메이션 */
+@keyframes communityFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   모바일 스타일
+========================= */
+
+
+/* =========================
+   모바일 레이아웃
+========================= */
+@media (max-width: 900px) {
+  .community {
+    /* 모바일 여백: 세로 흐름에 맞게 위아래 공간을 확보합니다. */
+    padding: 8vw 0;
+
+    /* 모바일 높이: 콘텐츠 높이에 맞춰 자연스럽게 흐릅니다. */
+    min-height: auto;
+  }
+
+  .community__inner {
+    /* 모바일 콘텐츠 폭: 화면 가장자리 여백을 확보합니다. */
+    width: 88vw;
+  }
+
+  .community__head {
+    /* 모바일 헤더 아래 여백입니다. */
+    margin-bottom: 5vw;
+  }
+
+  .community__head span {
+    /* 모바일 라벨 크기입니다. */
+    font-size: 3vw;
+  }
+
+  .community__head h2 {
+    /* 모바일 제목 크기입니다. */
+    font-size: 3vw;
+  }
+
+  .community__head p {
+    /* 모바일 설명 위 여백입니다. */
+    margin-top: 2vw;
+
+    /* 모바일 설명 크기입니다. */
+    font-size: 2.5vw;
+  }
+
+  .community__grid {
+    /* 모바일 배치: 대표 이미지와 패널을 세로로 쌓습니다. */
+    grid-template-columns: 1fr;
+
+    /* 모바일 간격: 영역 사이를 분리합니다. */
+    gap: 4vw;
+  }
+
+  .community__banner img {
+    /* 모바일 대표 이미지 높이입니다. */
+    min-height: 54vw;
+  }
+
+  .community__panel {
+    /* 모바일 패널 여백입니다. */
+    padding: 4vw;
+  }
+
+  .community__tabs {
+    /* 모바일 탭 줄바꿈: 탭이 많아져도 자연스럽게 내려갑니다. */
+    flex-wrap: wrap;
+
+    /* 모바일 탭 간격입니다. */
+    gap: 2vw;
+
+    /* 모바일 탭 아래 여백입니다. */
+    margin-bottom: 4vw;
+  }
+
+  .community__tab {
+    /* 모바일 탭 높이: 터치하기 쉬운 크기입니다. */
+    min-height: 10vw;
+
+    /* 모바일 탭 여백입니다. */
+    padding: 2vw 3vw;
+
+    /* 모바일 탭 글자 크기입니다. */
+    font-size: 3.2vw;
+  }
+
+  .community__detail {
+    /* 모바일 상세 영역 간격입니다. */
+    gap: 4vw;
+  }
+
+  .community__text span {
+    /* 모바일 상세 라벨 크기입니다. */
+    font-size: 3vw;
+  }
+
+  .community__text h3 {
+    /* 모바일 상세 제목 크기입니다. */
+    font-size: 3vw;
+  }
+
+  .community__text p {
+    /* 모바일 상세 설명 위 여백입니다. */
+    margin-top: 1vw;
+
+    /* 모바일 상세 설명 크기입니다. */
+    font-size: 2.5vw;
+  }
+
+  .community__detail img {
+    /* 모바일 상세 이미지 높이: 원본 비율대로 자동 계산해 이미지가 잘리지 않게 합니다. */
+    height: auto;
+
+    /* 모바일 상세 이미지 맞춤: 단지 배치도/특화설계/커뮤니티 이미지를 자르지 않고 전체 표시합니다. */
+    object-fit: contain;
+
+    /* 모바일 상세 이미지 배경: 여백이 생기는 이미지도 깨끗한 흰색 프레임 안에 보이게 합니다. */
+    background: #fff;
+  }
+}

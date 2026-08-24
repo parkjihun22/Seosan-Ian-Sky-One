@@ -1,0 +1,796 @@
+/* =========================
+   Location 전체 섹션
+   - 입지 프리미엄을 설명하는 대표 섹션입니다.
+   - 텍스트, 포인트, 이미지, CTA는 locationData.js에서 관리합니다.
+========================= */
+.location {
+  /* 섹션 높이: PC에서 한 화면에 꽉 차는 프리미엄 섹션으로 보이게 합니다. */
+  min-height: 100vh;
+
+  /* 위아래 여백: 값을 키우면 섹션이 더 여유롭고 고급스럽게 보입니다. */
+  padding: 5.8vw 0;
+
+  /* 위치 기준: 배경 장식과 내부 콘텐츠를 안정적으로 배치합니다. */
+  position: relative;
+
+  /* 넘침 제어: 이미지 카드와 장식선이 화면 밖으로 나가도 스크롤이 생기지 않게 합니다. */
+  overflow: hidden;
+
+  /* 배경색: 밝은 웜톤으로 입지 섹션의 안정감과 고급감을 만듭니다. */
+  background: #fbf7ef;
+
+  /* 기본 글자색: 본문 전체의 기준 색상입니다. */
+  color: #14202a;
+}
+
+
+/* =========================
+   배경 장식 레이어
+   - 평범한 흰 섹션처럼 보이지 않도록 깊이감을 만듭니다.
+========================= */
+.location::before {
+  /* 장식 레이어 생성: 실제 콘텐츠에는 영향을 주지 않습니다. */
+  content: "";
+
+  /* 위치 기준: 섹션 오른쪽에 세로형 배경 면을 배치합니다. */
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  /* 장식 폭: 값을 키우면 이미지 뒤쪽의 네이비 영역이 넓어집니다. */
+  width: 38vw;
+
+  /* 장식 높이: 섹션 전체 높이에 맞춰 세로감을 만듭니다. */
+  height: 100%;
+
+  /* 장식 배경: 네이비 톤을 옅게 깔아 이미지 영역에 무게감을 줍니다. */
+  background: linear-gradient(180deg, rgba(1, 73, 111, 0.14), rgba(1, 73, 111, 0.04));
+
+  /* 클릭 방지: 장식 레이어가 버튼 클릭을 막지 않게 합니다. */
+  pointer-events: none;
+}
+
+/* 큰 영문 배경 텍스트 */
+.location::after {
+  /* 장식 텍스트 생성: 브랜드급 섹션 분위기를 만듭니다. */
+  content: "LOCATION";
+
+  /* 위치 기준: 하단 왼쪽에 크게 배치합니다. */
+  position: absolute;
+  left: 5.8vw;
+  bottom: 3.2vw;
+
+  /* 글자 크기: 값을 키우면 배경 텍스트 존재감이 강해집니다. */
+  font-size: 8.2vw;
+
+  /* 글자 굵기: 얇고 크게 보여 배경처럼 처리합니다. */
+  font-weight: 300;
+
+  /* 줄 높이: 장식 텍스트의 세로 공간을 줄입니다. */
+  line-height: 1;
+
+  /* 글자 색상: 콘텐츠를 방해하지 않도록 매우 옅게 표현합니다. */
+  color: rgba(20, 32, 42, 0.045);
+
+  /* 선택 방지: 장식 텍스트가 드래그되지 않게 합니다. */
+  user-select: none;
+
+  /* 클릭 방지: 장식 텍스트가 버튼 조작을 막지 않게 합니다. */
+  pointer-events: none;
+}
+
+/* =========================
+   내부 컨테이너
+========================= */
+.location__inner {
+  /* 위치 기준: 배경 장식보다 콘텐츠가 위에 놓이게 합니다. */
+  position: relative;
+  z-index: 1;
+
+  /* 콘텐츠 폭: 값을 키우면 좌우 영역이 더 넓어집니다. */
+  width: min(86vw, 1560px);
+
+  /* 가운데 정렬: 대형 화면에서도 중앙 기준으로 정돈합니다. */
+  margin: 0 auto;
+
+  /* 그리드 배치: 텍스트와 이미지가 비대칭으로 나뉩니다. */
+  display: grid;
+
+  /* 열 비율: 텍스트보다 이미지가 살짝 작게 보여 안정적인 균형을 만듭니다. */
+  grid-template-columns: 1fr 0.92fr;
+
+  /* 열 간격: 값을 키우면 텍스트와 이미지 사이가 더 여유로워집니다. */
+  gap: 5.4vw;
+
+  /* 세로 정렬: 한 화면 안에서 콘텐츠를 중앙에 맞춥니다. */
+  align-items: center;
+
+  /* 최소 높이: Header 이후 섹션이 화면 중앙에 안정적으로 잡히게 합니다. */
+  min-height: calc(100vh - 11.6vw);
+}
+
+/* =========================
+   텍스트 콘텐츠
+========================= */
+.location__content {
+  /* 처음 상태: 화면 진입 전 아래에서 올라오는 애니메이션을 준비합니다. */
+  opacity: 0;
+  transform: translateY(42px);
+
+  /* 전환: 섹션 진입 시 자연스럽게 나타납니다. */
+  transition: opacity 0.85s ease, transform 0.85s ease;
+}
+
+/* 섹션 활성화 후 텍스트 상태 */
+.location--active .location__content {
+  /* 활성화 투명도: 텍스트가 보이도록 합니다. */
+  opacity: 1;
+
+  /* 활성화 위치: 원래 자리로 올라옵니다. */
+  transform: translateY(0);
+}
+
+/* 작은 영문 라벨 */
+.location__eyebrow {
+  /* 블록 처리: 제목 위에 독립된 라벨로 보이게 합니다. */
+  display: block;
+
+  /* 라벨 아래 여백: 제목과의 간격입니다. */
+  margin-bottom: 1vw;
+
+  /* 글자 크기: 섹션 라벨의 정보 위계를 낮게 둡니다. */
+  font-size: 0.82vw;
+
+  /* 글자 굵기: 작은 영문 라벨을 선명하게 합니다. */
+  font-weight: 800;
+
+  /* 자간: 영문 라벨의 정제된 느낌을 만듭니다. */
+  letter-spacing: 0.18em;
+
+  /* 라벨 색상: 골드 포인트로 브랜드감을 줍니다. */
+  color: #b8893f;
+}
+
+/* 메인 제목 */
+.location__content h2 {
+  /* 기본 여백 제거: 주변 간격은 각 요소에서 관리합니다. */
+  margin: 0;
+
+  /* 제목 크기: PC에서 섹션의 대표 문구로 보이게 합니다. */
+  font-size: 3vw;
+
+  /* 제목 굵기: 고급스러운 무게감을 위해 과도하게 두껍지 않게 합니다. */
+  font-weight: 650;
+
+  /* 줄 높이: 두 줄 제목이 넓게 벌어지지 않게 합니다. */
+  line-height: 1.18;
+
+  /* 자간: 한글 제목은 기본 자간으로 가독성을 유지합니다. */
+  letter-spacing: 0;
+
+  /* 제목 색상: 브랜드 네이비로 신뢰감을 줍니다. */
+  color: #01496f;
+}
+
+/* 제목 줄 */
+.location__content h2 span {
+  /* Data 배열의 각 문장이 실제 화면에서도 줄 단위로 표시됩니다. */
+  display: block;
+}
+
+/* 설명 문구 */
+.location__content p {
+  /* 설명 위아래 여백: 제목과 포인트 리스트 사이의 호흡입니다. */
+  margin: 1.45vw 0 2.15vw;
+
+  /* 설명 폭: 너무 긴 줄이 되지 않도록 제한합니다. */
+  width: min(42vw, 720px);
+
+  /* 글자 크기: 본문 설명으로 읽기 좋은 크기입니다. */
+  font-size: 0.96vw;
+
+  /* 줄 높이: 긴 문장도 편하게 읽히도록 합니다. */
+  line-height: 1.86;
+
+  /* 글자 색상: 제목보다 낮은 위계로 부드럽게 처리합니다. */
+  color: rgba(20, 32, 42, 0.68);
+
+  /* 단어 줄바꿈: 한글 문장이 어색하게 쪼개지는 것을 줄입니다. */
+  word-break: keep-all;
+}
+
+/* =========================
+   포인트 리스트
+========================= */
+.location__points {
+  /* 그리드 배치: PC에서는 2열로 핵심 포인트를 정리합니다. */
+  display: grid;
+
+  /* 열 구성: 같은 폭 2열로 균형을 만듭니다. */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  /* 카드 간격: 값을 키우면 포인트 카드 사이가 더 분리되어 보입니다. */
+  gap: 0.9vw;
+
+  /* 리스트 폭: 본문과 같은 시각 폭을 유지합니다. */
+  width: min(44vw, 740px);
+}
+
+/* 포인트 카드 */
+.location__point {
+  /* 위치 기준: hover 장식과 내부 요소 배치에 사용합니다. */
+  position: relative;
+
+  /* 카드 높이: 값을 키우면 포인트 카드가 더 여유롭게 보입니다. */
+  min-height: 4.6vw;
+
+  /* 카드 안쪽 여백: 번호와 텍스트 사이의 공간을 만듭니다. */
+  padding: 1vw 1.15vw;
+
+  /* 박스 크기 계산: padding 포함으로 레이아웃 흔들림을 줄입니다. */
+  box-sizing: border-box;
+
+  /* 플렉스 배치: 번호와 문구를 세로로 정돈합니다. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.35vw;
+
+  /* 카드 배경: 밝은 배경 위에서 은은하게 구분합니다. */
+  background: rgba(255, 255, 255, 0.76);
+
+  /* 카드 테두리: 너무 강하지 않은 경계선을 만듭니다. */
+  border: 1px solid rgba(1, 73, 111, 0.12);
+
+  /* 모서리: 프로젝트 카드 규칙에 맞춰 8px 이하로 유지합니다. */
+  border-radius: 8px;
+
+  /* 전환: hover 시 자연스럽게 반응합니다. */
+  transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+
+/* 포인트 카드 hover */
+.location__point:hover {
+  /* 이동 거리: 값을 키우면 hover 반응이 더 강하게 보입니다. */
+  transform: translateY(-0.24vw);
+
+  /* hover 배경: 현재 포인트가 더 또렷하게 보이도록 합니다. */
+  background: #fff;
+
+  /* hover 테두리: 골드 톤으로 현재 항목에 시선을 모읍니다. */
+  border-color: rgba(184, 137, 63, 0.36);
+}
+
+/* 포인트 번호 */
+.location__point strong {
+  /* 번호 크기: 작은 카드의 상단 라벨 역할을 합니다. */
+  font-size: 0.78vw;
+
+  /* 번호 굵기: 작은 숫자가 흐려지지 않게 합니다. */
+  font-weight: 900;
+
+  /* 번호 색상: 골드 톤으로 프리미엄 포인트를 줍니다. */
+  color: #b8893f;
+}
+
+/* 포인트 텍스트 */
+.location__point span {
+  /* 텍스트 크기: 카드 안에서 핵심 문구가 또렷하게 보이도록 합니다. */
+  font-size: 0.96vw;
+
+  /* 텍스트 굵기: 핵심 포인트의 중요도를 높입니다. */
+  font-weight: 800;
+
+  /* 텍스트 색상: 브랜드 네이비로 안정감을 줍니다. */
+  color: #01496f;
+
+  /* 단어 줄바꿈: 좁은 카드에서도 한글이 자연스럽게 접힙니다. */
+  word-break: keep-all;
+}
+
+/* =========================
+   방문예약 버튼
+========================= */
+.location__button {
+  /* 버튼 위 여백: 포인트 리스트와 버튼 사이의 거리입니다. */
+  margin-top: 2.15vw;
+
+  /* 기본 테두리 제거: 커스텀 버튼 스타일을 적용합니다. */
+  border: none;
+
+  /* 버튼 배경: 브랜드 네이비로 CTA를 분명하게 만듭니다. */
+  background: #01496f;
+
+  /* 버튼 글자색: 어두운 배경에서 선명하게 보입니다. */
+  color: #fff;
+
+  /* 버튼 안쪽 여백: 값을 키우면 버튼이 더 크고 여유롭게 보입니다. */
+  padding: 0.92vw 2.5vw;
+
+  /* 모서리: 둥근 CTA로 터치성과 접근성을 높입니다. */
+  border-radius: 999px;
+
+  /* 글자 크기: CTA 문구가 명확히 읽히도록 합니다. */
+  font-size: 0.94vw;
+
+  /* 글자 굵기: 버튼의 행동성을 강조합니다. */
+  font-weight: 900;
+
+  /* 폰트 상속: 프로젝트 기본 폰트와 맞춥니다. */
+  font-family: inherit;
+
+  /* 마우스 커서: 클릭 가능한 요소임을 알려줍니다. */
+  cursor: pointer;
+
+  /* 그림자: 버튼이 배경에서 살짝 떠 보이게 합니다. */
+  box-shadow: 0 18px 38px rgba(1, 73, 111, 0.2);
+
+  /* 전환: hover 시 부드럽게 반응합니다. */
+  transition: transform 0.28s ease, background 0.28s ease, box-shadow 0.28s ease;
+}
+
+/* 버튼 hover */
+.location__button:hover {
+  /* 이동 거리: 버튼이 눌릴 수 있는 요소처럼 반응합니다. */
+  transform: translateY(-3px);
+
+  /* hover 배경: 버튼이 더 깊은 네이비로 변합니다. */
+  background: #06243b;
+
+  /* hover 그림자: 버튼 반응성을 더 분명하게 보여줍니다. */
+  box-shadow: 0 22px 44px rgba(1, 73, 111, 0.26);
+}
+
+/* =========================
+   이미지 영역
+========================= */
+.location__visual {
+  /* 위치 기준: 배지와 이미지 장식을 겹쳐 배치합니다. */
+  position: relative;
+
+  /* 처음 상태: 화면 진입 전 오른쪽에서 살짝 들어오는 애니메이션을 준비합니다. */
+  opacity: 0;
+  transform: translateX(48px);
+
+  /* 전환: 이미지 영역이 자연스럽게 나타납니다. */
+  transition: opacity 0.9s ease 0.12s, transform 0.9s ease 0.12s;
+}
+
+/* 섹션 활성화 후 이미지 상태 */
+.location--active .location__visual {
+  /* 활성화 투명도: 이미지가 보이게 합니다. */
+  opacity: 1;
+
+  /* 활성화 위치: 원래 자리로 이동합니다. */
+  transform: translateX(0);
+}
+
+/* 이미지 */
+.location__visual img {
+  /* 이미지 폭: 오른쪽 영역 전체를 사용합니다. */
+  width: 100%;
+
+  /* 이미지 높이: 값을 키우면 이미지가 더 웅장하게 보입니다. */
+  height: 31vw;
+
+  /* 이미지 맞춤: 프레임을 채우면서 비율을 유지합니다. */
+  object-fit: cover;
+
+  /* 이미지 표시: 하단 여백 흔들림을 막습니다. */
+  display: block;
+
+  /* 모서리: 과한 라운드 없이 8px 이하로 정리합니다. */
+  border-radius: 8px;
+
+  /* 그림자: 이미지가 배경에서 떠 보이게 합니다. */
+  box-shadow: 0 28px 58px rgba(20, 32, 42, 0.18);
+}
+
+/* 이미지 하단 배지 */
+.location__badge {
+  /* 위치 기준: 이미지 오른쪽 아래에 겹칩니다. */
+  position: absolute;
+  right: -2vw;
+  bottom: -2vw;
+
+  /* 배지 폭: 값을 키우면 문구가 더 여유롭게 들어갑니다. */
+  width: 16vw;
+
+  /* 배지 안쪽 여백: 텍스트와 외곽 사이의 공간입니다. */
+  padding: 1.45vw;
+
+  /* 박스 크기 계산: padding 포함으로 폭을 유지합니다. */
+  box-sizing: border-box;
+
+  /* 배지 배경: 브랜드 네이비로 이미지 위에서 강한 포인트를 만듭니다. */
+  background: #01496f;
+
+  /* 배지 글자색: 어두운 배경에서 선명하게 보입니다. */
+  color: #fff;
+
+  /* 모서리: 카드 규칙에 맞춰 8px 이하로 유지합니다. */
+  border-radius: 8px;
+
+  /* 그림자: 배지가 이미지 위에 떠 있는 느낌을 줍니다. */
+  box-shadow: 0 20px 42px rgba(0, 0, 0, 0.24);
+}
+
+/* 배지 라벨 */
+.location__badge span {
+  /* 블록 처리: 타이틀 위 작은 라벨로 분리합니다. */
+  display: block;
+
+  /* 아래 여백: 라벨과 타이틀 사이 간격입니다. */
+  margin-bottom: 0.52vw;
+
+  /* 글자 크기: 작은 영문 라벨의 크기입니다. */
+  font-size: 0.62vw;
+
+  /* 자간: 영문 라벨의 정돈된 느낌을 만듭니다. */
+  letter-spacing: 0.18em;
+
+  /* 글자 굵기: 작은 라벨을 선명하게 합니다. */
+  font-weight: 800;
+
+  /* 라벨 색상: 골드 포인트로 배지 안에서 위계를 만듭니다. */
+  color: #d4af37;
+}
+
+/* 배지 제목 */
+.location__badge strong {
+  /* 블록 처리: 라벨 아래에서 독립적으로 표시합니다. */
+  display: block;
+
+  /* 글자 크기: 배지 안의 핵심 문구 크기입니다. */
+  font-size: 1.14vw;
+
+  /* 줄 높이: 두 줄로 접혀도 안정적으로 보이게 합니다. */
+  line-height: 1.35;
+
+  /* 글자 굵기: 배지의 중심 문구를 강조합니다. */
+  font-weight: 900;
+}
+
+/* =========================
+   PC 보정 스타일
+========================= */
+
+
+/* =========================
+   화면 최적화 보정
+   - PC/모바일 모두 텍스트와 이미지가 브라우저 높이 안에서 잘리지 않도록 조정합니다.
+========================= */
+@media (min-width: 901px) {
+  .location {
+    /* PC 섹션 높이: 콘텐츠가 100vh에 갇혀 하단이 잘리는 문제를 줄입니다. */
+    min-height: auto;
+    padding: 4.4vw 0;
+  }
+
+  .location__inner {
+    /* PC 내부 높이: 고정 헤더 아래에서도 텍스트와 이미지가 한 화면에 자연스럽게 들어오게 합니다. */
+    min-height: auto;
+    gap: 4.5vw;
+  }
+
+  .location__content h2 {
+    /* PC 제목 크기: 화면 폭이 넓어도 제목이 과도하게 커지지 않게 제한합니다. */
+    font-size: 2.65vw;
+  }
+
+  .location__content p {
+    /* PC 본문 간격: 카드와 CTA가 아래로 밀리지 않도록 여백을 압축합니다. */
+    margin: 1.15vw 0 1.7vw;
+  }
+
+  .location__visual img {
+    /* PC 이미지 높이: 위치 이미지가 섹션 밖으로 과하게 커지지 않도록 제한합니다. */
+    height: 27vw;
+  }
+}
+
+
+/* =========================
+   최종 화면 최적화 보정
+   - 파일 하단에서 다시 한 번 적용해 기존 모바일/PC 규칙보다 우선되게 합니다.
+========================= */
+@media (min-width: 901px) {
+  .location {
+    /* PC 최종 섹션 여백: 섹션 내용이 하단에서 잘리지 않도록 세로 여백을 안정화합니다. */
+    min-height: auto;
+    padding: 4.4vw 0;
+  }
+
+  .location__inner {
+    /* PC 최종 내부 높이: 고정 높이 대신 콘텐츠 기준으로 자연스럽게 배치합니다. */
+    min-height: auto;
+    gap: 4.5vw;
+  }
+
+  .location__content h2 {
+    /* PC 최종 제목 크기: 너무 큰 제목으로 인한 잘림을 줄입니다. */
+    font-size: 2.65vw;
+  }
+
+  .location__visual img {
+    /* PC 최종 이미지 높이: 이미지가 섹션 높이를 과하게 밀어내지 않게 합니다. */
+    height: 27vw;
+  }
+}
+
+/* =========================
+   모바일 스타일
+========================= */
+
+@media (max-width: 768px) {
+  .location {
+    /* 모바일 섹션 여백: 상단 고정 헤더 아래에서 제목이 가려지지 않도록 시작 여백을 정리합니다. */
+    padding: 12vw 0 14vw;
+  }
+
+  .location__inner {
+    /* 모바일 내부 폭: 좌우 여백을 유지하면서 가로 스크롤을 방지합니다. */
+    width: min(92vw, 560px);
+  }
+
+  .location__eyebrow {
+    /* 모바일 영문 라벨 크기: 제목보다 튀지 않도록 제한합니다. */
+    font-size: 3vw;
+  }
+
+  .location__content h2 {
+    /* 모바일 제목 크기: 긴 문장이 화면 안에서 자연스럽게 줄바꿈되도록 낮춥니다. */
+    font-size: 7.1vw;
+    line-height: 1.16;
+  }
+
+  .location__content p {
+    /* 모바일 본문 크기: 설명문이 과하게 커져 아래 콘텐츠가 밀리는 현상을 줄입니다. */
+    margin: 5vw 0 6vw;
+    font-size: 3.45vw;
+  }
+
+  .location__point {
+    /* 모바일 포인트 카드 높이: 카드가 너무 커져 한 화면을 잡아먹지 않도록 합니다. */
+    min-height: auto;
+    padding: 4vw;
+  }
+
+  .location__point strong {
+    /* 모바일 포인트 번호 크기: 카드 내 정보 위계를 유지합니다. */
+    font-size: 3vw;
+  }
+
+  .location__point span {
+    /* 모바일 포인트 문구 크기: 줄바꿈이 생겨도 카드가 과하게 높아지지 않게 합니다. */
+    font-size: 3.65vw;
+  }
+}
+
+
+/* =========================
+   태블릿 이하 레이아웃
+   - PC를 축소하지 않고 세로형 정보 흐름으로 전환합니다.
+========================= */
+@media (max-width: 1024px) {
+  .location {
+    /* 태블릿 여백: 콘텐츠 흐름에 맞춰 위아래 공간을 확보합니다. */
+    padding: 14vw 0 13vw;
+
+    /* 태블릿 높이: 화면 고정 대신 콘텐츠 길이에 맞춥니다. */
+    min-height: auto;
+  }
+
+  .location::before {
+    /* 태블릿 배경 장식: 상단 이미지 영역 뒤에만 은은하게 남깁니다. */
+    width: 100%;
+    height: 42vw;
+  }
+
+  .location::after {
+    /* 태블릿 장식 텍스트 위치: 하단 여백에 맞게 조정합니다. */
+    left: 6vw;
+    bottom: 5vw;
+
+    /* 태블릿 장식 텍스트 크기: 좁은 화면에서 과하지 않게 줄입니다. */
+    font-size: 13vw;
+  }
+
+  .location__inner {
+    /* 태블릿 폭: 화면 가장자리 여백을 확보합니다. */
+    width: 88vw;
+
+    /* 태블릿 배치: 텍스트와 이미지를 세로로 재구성합니다. */
+    grid-template-columns: 1fr;
+
+    /* 태블릿 간격: 텍스트와 이미지 사이의 호흡입니다. */
+    gap: 8vw;
+
+    /* 태블릿 높이: 콘텐츠 길이에 맞춥니다. */
+    min-height: auto;
+  }
+
+  .location__content p {
+    /* 태블릿 설명 폭: 화면 폭을 자연스럽게 사용합니다. */
+    width: 100%;
+  }
+
+  .location__points {
+    /* 태블릿 포인트 폭: 화면 폭을 사용해 정보가 답답하지 않게 합니다. */
+    width: 100%;
+
+    /* 태블릿 포인트 간격: 카드 사이 공간을 넓힙니다. */
+    gap: 2.4vw;
+  }
+
+  .location__point {
+    /* 태블릿 포인트 높이: 터치 화면에서도 안정적인 카드 높이입니다. */
+    min-height: 12vw;
+
+    /* 태블릿 카드 여백: 내부 텍스트가 붙어 보이지 않게 합니다. */
+    padding: 3.2vw;
+  }
+
+  .location__visual img {
+    /* 태블릿 이미지 높이: 세로형 흐름에 맞춘 이미지 비율입니다. */
+    height: 54vw;
+  }
+
+  .location__badge {
+    /* 태블릿 배지 위치: 이미지 안쪽으로 넣어 가로 스크롤을 방지합니다. */
+    right: 4vw;
+    bottom: -4vw;
+
+    /* 태블릿 배지 폭: 텍스트가 안정적으로 들어가도록 키웁니다. */
+    width: 44vw;
+
+    /* 태블릿 배지 여백: 좁은 화면에서 읽기 좋게 합니다. */
+    padding: 4vw;
+  }
+}
+
+
+/* =========================
+   모바일 레이아웃
+   - 모바일은 PC 축소가 아니라 카드형 정보 흐름으로 다시 디자인합니다.
+========================= */
+@media (max-width: 768px) {
+  .location {
+    /* 모바일 위아래 여백: 섹션 시작과 종료를 여유 있게 만듭니다. */
+    padding: 18vw 0 17vw;
+  }
+
+  .location__eyebrow {
+    /* 모바일 라벨 아래 여백: 제목과의 간격입니다. */
+    margin-bottom: 3vw;
+
+    /* 모바일 라벨 크기: 작은 화면에서 읽기 가능한 크기입니다. */
+    font-size: 3vw;
+  }
+
+  .location__content h2 {
+    /* 모바일 제목 크기: 한눈에 메시지가 들어오는 크기입니다. */
+    font-size: 8vw;
+
+    /* 모바일 제목 줄 높이: 두 줄 제목을 안정적으로 보이게 합니다. */
+    line-height: 1.18;
+  }
+
+  .location__content p {
+    /* 모바일 설명 여백: 제목과 포인트 사이의 호흡입니다. */
+    margin: 5vw 0 6vw;
+
+    /* 모바일 설명 크기: 긴 문장이 읽기 편한 크기입니다. */
+    font-size: 3.6vw;
+
+    /* 모바일 설명 줄 높이: 본문 가독성을 확보합니다. */
+    line-height: 1.75;
+  }
+
+  .location__points {
+    /* 모바일 포인트 배치: 1열로 전환해 문구가 잘리지 않게 합니다. */
+    grid-template-columns: 1fr;
+
+    /* 모바일 카드 간격: 항목별 구분감을 만듭니다. */
+    gap: 2.6vw;
+  }
+
+  .location__point {
+    /* 모바일 포인트 높이: 터치 화면에서 안정적인 카드 높이입니다. */
+    min-height: 15vw;
+
+    /* 모바일 카드 여백: 번호와 문구가 답답하지 않게 합니다. */
+    padding: 4vw;
+
+    /* 모바일 hover 이동 제거: 터치 화면에서 불필요한 흔들림을 줄입니다. */
+    transform: none;
+  }
+
+  .location__point strong {
+    /* 모바일 번호 크기: 작은 라벨이 선명하게 보이도록 합니다. */
+    font-size: 3vw;
+  }
+
+  .location__point span {
+    /* 모바일 포인트 문구 크기: 핵심 문구가 바로 읽히도록 합니다. */
+    font-size: 3.8vw;
+  }
+
+  .location__button {
+    /* 모바일 버튼 위 여백: 포인트 리스트와 CTA를 분리합니다. */
+    margin-top: 4vw;
+
+    /* 모바일 버튼 너비: 터치하기 쉽게 전체 폭을 사용합니다. */
+    width: 100%;
+
+    /* 모바일 버튼 여백: 버튼 높이를 충분히 확보합니다. */
+    padding: 2vw 3vw;
+
+    /* 모바일 버튼 글자 크기: CTA 문구가 선명하게 보입니다. */
+    font-size: 3vw;
+  }
+
+  .location__visual img {
+    /* 모바일 이미지 높이: 화면 폭 대비 안정적인 비율입니다. */
+    height: 62vw;
+  }
+
+  .location__badge {
+    /* 모바일 배지 위치: 이미지 아래쪽에 걸쳐 배치합니다. */
+    right: 5vw;
+    bottom: -5vw;
+
+    /* 모바일 배지 폭: 한 줄 문구가 안정적으로 들어갑니다. */
+    width: 50vw;
+
+    /* 모바일 배지 안쪽 여백: 텍스트 가독성을 확보합니다. */
+    padding: 3vw;
+  }
+
+  .location__badge span {
+    /* 모바일 배지 라벨 아래 여백입니다. */
+    margin-bottom: 1.5vw;
+
+    /* 모바일 배지 라벨 크기입니다. */
+    font-size: 2.35vw;
+  }
+
+  .location__badge strong {
+    /* 모바일 배지 제목 크기입니다. */
+    font-size: 4vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .location {
+    /* 모바일 최종 섹션 여백: 상단 헤더와 하단 고정 버튼 사이에서 균형을 맞춥니다. */
+    padding: 8vw 0 14vw;
+  }
+
+  .location__inner {
+    /* 모바일 최종 내부 폭: 화면 밖으로 밀리지 않게 92vw 안에서 제한합니다. */
+    width: min(92vw, 560px);
+  }
+
+  .location__content h2 {
+    /* 모바일 최종 제목 크기: 긴 제목이 화면을 과하게 차지하지 않도록 줄입니다. */
+    font-size: 4vw;
+    line-height: 1.3;
+  }
+
+  .location__content p {
+    /* 모바일 최종 본문 크기: 본문이 크게 보여 답답한 느낌을 줄입니다. */
+    font-size: 2.5vw;
+  }
+
+  .location__point {
+    /* 모바일 최종 포인트 카드: 카드 높이를 내용 기준으로 줄입니다. */
+    min-height: auto;
+    padding: 2vw;
+  }
+
+  .location__point span {
+    /* 모바일 최종 포인트 문구: 줄바꿈과 가독성의 균형을 맞춥니다. */
+    font-size: 2.5vw;
+  }
+}

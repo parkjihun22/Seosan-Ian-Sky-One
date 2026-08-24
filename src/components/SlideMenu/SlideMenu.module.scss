@@ -1,0 +1,111 @@
+:root {
+  --mobile-menu-top: 24vw;
+}
+
+/* 오른쪽 슬라이드 메뉴 전체 */
+.container {
+  position: fixed;
+  top: var(--mobile-menu-top);
+  right: 0;
+  left: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 60%;
+  height: calc(100dvh - var(--mobile-menu-top));
+
+  background: #fff;
+  overflow-y: auto;
+
+  font-size: 0.9rem;
+  z-index: 99999;
+
+  box-shadow: -16px 0 35px rgba(0, 0, 0, 0.16);
+
+  animation: slideFromRight 0.3s ease forwards;
+}
+
+/* 오른쪽에서 들어오는 애니메이션 */
+@keyframes slideFromRight {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.menuItem {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.menuBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 17px 18px;
+  cursor: pointer;
+
+  background-color: #fff;
+  transition: background-color 0.25s ease;
+}
+
+.menuBtn:hover {
+  background-color: #f5f7f8;
+}
+
+.menuTitle {
+  font-weight: 700;
+  font-size: 15px;
+  color: #01496f;
+}
+
+.linkItem {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  width: 100%;
+}
+
+.subMenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: #f8fafb;
+}
+
+.subMenu.show {
+  max-height: 500px;
+}
+
+.subMenuBtn {
+  display: block;
+  padding: 13px 20px;
+  text-decoration: none;
+  color: #01496f;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.25s ease;
+}
+
+.subMenuBtn:hover {
+  background-color: #edf2f5;
+}
+
+.mobileReservation {
+  background-color: #01496f;
+  border-bottom: 1px solid #01496f;
+}
+
+.mobileReservation .linkItem {
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.mobileReservation:hover {
+  background-color: #06243b;
+}

@@ -1,0 +1,999 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bener{
+    width: 100vw;
+    height: auto;
+}
+
+.image {
+    width: 60rem;
+    height: auto;
+
+}
+
+.image1 {
+    margin: 4vw 0 0 0;
+    width: 80%;
+    height: auto;
+
+}
+
+.image2 {
+    margin: 4vw 0 0 0;
+    width: 60%;
+    height: auto;
+    opacity: 0;  // 처음에는 안 보이게 설정
+    transform: scale(1.05);  // 처음에 살짝 커진 상태
+    transition: opacity 1.5s ease, transform 1.5s ease;  // 애니메이션 효과
+
+    &.showImage2 {
+        opacity: 1;  // 애니메이션이 완료되면 이미지가 보이게
+        transform: scale(1);  // 원래 크기로 돌아옴
+    }
+
+}
+
+.textBox{
+    font-family: 'SUIT-Regular';
+    margin: 3vw 0 0 0;
+    text-align: center;
+    font-size: 2.5vw;
+
+    div:nth-of-type(1) {
+        font-weight: 200;
+    }
+    div:nth-of-type(2) {
+        margin-top: 0.5vw;
+        font-weight: 800;
+        color: #01496f;
+    }
+    div:nth-of-type(3) {
+        margin-top: 0.5vw;
+        font-weight: 200;
+    }
+}
+
+.commonBox {
+    margin: 2vw 0;
+    width: 80%;
+    background-color: #f8f4f0;
+    border: 1px solid #e9e2da;
+
+
+    .notice {
+        padding: 0 1vw;
+        line-height: 1.1vw;
+        font-size: 1vw;
+        color: #ada8a2;
+
+    }
+
+    .notice:nth-of-type(1) {
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+    }
+
+    .notice:nth-of-type(2),
+    .notice:nth-of-type(3),
+    .notice:nth-of-type(4),
+    .notice:nth-of-type(5) {
+        padding-bottom: 1vw;
+    }
+
+    .notice:nth-of-type(6) {
+        padding-bottom: 1vw;
+    }
+}
+
+.commonBox2 {
+    margin: 2vw 0;
+    width: 60%;
+    background-color: #f8f4f0;
+    border: 1px solid #e9e2da;
+
+
+    .notice {
+        padding: 0 1vw;
+        line-height: 1.1vw;
+        font-size: 1vw;
+        color: #ada8a2;
+
+    }
+
+    .notice:nth-of-type(1) {
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+    }
+
+    .notice:nth-of-type(2),
+    .notice:nth-of-type(3),
+    .notice:nth-of-type(4),
+    .notice:nth-of-type(5) {
+        padding-bottom: 1vw;
+    }
+
+    .notice:nth-of-type(6) {
+        padding-bottom: 1vw;
+    }
+}
+
+
+/* PDF 버튼 스타일 */
+/* PDF 버튼 스타일 */
+.pdfButton {
+    margin-top: 3vw; /* PC에서 적용되는 마진 */
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    background-color: #c70b0b;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 7px 15px;
+    font-size: 1.3vw; /* 버튼의 폰트 크기를 직접 설정 */
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: auto;  /* 수평 중앙 정렬 */
+    margin-right: auto; /* 수평 중앙 정렬 */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 23vw;
+    text-align: center; /* 텍스트를 버튼 내부에서 중앙 정렬 */
+}
+
+.pdfButton:hover {
+    background-color: #c70b0b; /* 호버 시 색상 변화*/
+    transform: translateY(-3px);
+}
+
+.pdfButton:active {
+    transform: translateY(1px);
+}
+
+/* PDF 아이콘 */
+.pdfIcon {
+    width: 50px;
+    height: 50px;
+    margin-right: 50px;
+}
+
+/* 버튼 내부 텍스트 - span 스타일 제거 */
+.pdfButton span {
+    font-size: inherit; /* 부모 버튼의 폰트 크기를 상속 */
+    font-weight: inherit;
+    color: inherit;
+}
+
+/* 로딩 중에 나타나는 메시지 */
+.loader {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #333;
+    font-size: 18px;
+}
+
+.spinner {
+    margin-top: 20px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid #c70b0b;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+/* 스피너 애니메이션 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* =========================
+   모집공고 페이지 - PC
+   - 모집공고 축약본, PDF CTA, 공고 미리보기 영역입니다.
+   - 모집공고 페이지 전용 스타일이므로 다른 분양안내 페이지와 충돌하지 않습니다.
+========================= */
+.announcementPage {
+    /* 페이지 폭: 하위 콘텐츠가 브라우저 전체 폭을 기준으로 자연스럽게 펼쳐집니다. */
+    width: 100%;
+
+    /* 페이지 배경: 모집공고 페이지 전체를 따뜻한 프리미엄 톤으로 묶습니다. */
+    background:
+        linear-gradient(90deg, rgba(1, 73, 111, 0.06) 0 34%, transparent 34%),
+        #fbf7ef;
+
+    /* 페이지 위아래 여백: 메뉴바 아래에서 본문이 너무 붙지 않게 합니다. */
+    padding: 4.8vw 0 5.8vw;
+
+    /* 크기 계산: padding 포함으로 가로 스크롤을 방지합니다. */
+    box-sizing: border-box;
+}
+
+.announcementHero {
+    /* 상단 안내 폭: 대표 섹션들과 비슷한 콘텐츠 폭을 사용합니다. */
+    width: min(88vw, 1280px);
+
+    /* 가운데 정렬: 큰 화면에서도 안정적으로 보이게 합니다. */
+    margin: 0 auto;
+
+    /* PC 배치: 왼쪽 설명, 오른쪽 요약 카드와 PDF 버튼입니다. */
+    display: grid;
+    grid-template-columns: minmax(0, 0.58fr) minmax(360px, 0.42fr);
+
+    /* 열 간격: 설명과 버튼 영역이 붙어 보이지 않게 합니다. */
+    gap: 3.6vw;
+
+    /* 세로 정렬: 양쪽 콘텐츠 높이를 자연스럽게 맞춥니다. */
+    align-items: center;
+
+    /* 상단 안내 박스 여백: 텍스트와 카드가 가장자리에 붙지 않게 합니다. */
+    padding: 3.2vw;
+
+    /* 상단 안내 배경: 흰색 면 위에 은은한 고급감을 더합니다. */
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.96) 0%, rgba(250, 246, 239, 0.96) 100%);
+
+    /* 상단 안내 테두리: 밝은 배경 위에서 섹션 경계를 잡습니다. */
+    border: 1px solid rgba(1, 73, 111, 0.12);
+
+    /* 모서리: 프로젝트 카드 규칙에 맞춰 8px로 유지합니다. */
+    border-radius: 8px;
+
+    /* 그림자: 페이지 상단 핵심 영역이 살짝 떠 보이게 합니다. */
+    box-shadow: 0 28px 58px rgba(20, 32, 42, 0.08);
+}
+
+.announcementIntro span,
+.announcementPreviewHead span {
+    /* 영문 라벨 표시: 섹션의 성격을 작고 고급스럽게 보여줍니다. */
+    display: block;
+
+    /* 라벨 아래 여백: 제목과 분리합니다. */
+    margin-bottom: 0.8vw;
+
+    /* 라벨 글자 크기: 제목보다 낮은 위계입니다. */
+    font-size: 0.72vw;
+
+    /* 라벨 굵기: 작은 글자를 또렷하게 보이게 합니다. */
+    font-weight: 900;
+
+    /* 라벨 자간: 영문 라벨의 정돈감을 만듭니다. */
+    letter-spacing: 0.16em;
+
+    /* 라벨 색상: 골드 포인트입니다. */
+    color: #b8893f;
+}
+
+.announcementIntro h2 {
+    /* 제목 여백 제거: 주변 간격을 직접 관리합니다. */
+    margin: 0;
+
+    /* 제목 크기: 모집공고 페이지의 핵심 타이틀입니다. */
+    font-size: 2vw;
+
+    /* 제목 굵기: 대표 홈페이지다운 무게감을 줍니다. */
+    font-weight: 900;
+
+    /* 제목 줄 높이: 두 줄이 되어도 안정적으로 보입니다. */
+    line-height: 1.16;
+
+    /* 제목 색상: 브랜드 네이비입니다. */
+    color: #01496f;
+
+    /* 한글 줄바꿈: 단어가 어색하게 끊기지 않게 합니다. */
+    word-break: keep-all;
+}
+
+.announcementIntro p {
+    /* 설명 여백: 제목과 요약 카드 사이의 호흡을 만듭니다. */
+    margin: 1.4vw 0 0;
+
+    /* 설명 최대 폭: 문장이 너무 길게 늘어지지 않게 합니다. */
+    max-width: 660px;
+
+    /* 설명 글자 크기: SEO 문장도 읽기 좋은 크기입니다. */
+    font-size: 0.8vw;
+
+    /* 설명 줄 높이: 긴 문장을 편하게 읽게 합니다. */
+    line-height: 1.78;
+
+    /* 설명 색상: 제목보다 낮은 대비로 차분하게 보이게 합니다. */
+    color: rgba(20, 32, 42, 0.68);
+
+    /* 한글 줄바꿈: 문장이 자연스럽게 내려가게 합니다. */
+    word-break: keep-all;
+}
+
+.announcementAction {
+    /* 오른쪽 영역 배치: 요약 카드와 PDF 버튼을 세로로 정리합니다. */
+    display: flex;
+    flex-direction: column;
+
+    /* 요소 간격: 카드 묶음과 버튼 사이 거리입니다. */
+    gap: 1.4vw;
+}
+
+.announcementCards {
+    /* 요약 카드 배치: 공고 핵심 내용을 세로로 정리합니다. */
+    display: grid;
+    grid-template-columns: 1fr;
+
+    /* 카드 간격: 항목별 구분감을 줍니다. */
+    gap: 0.8vw;
+}
+
+.announcementCard {
+    /* 카드 여백: 라벨과 값이 가장자리에 붙지 않게 합니다. */
+    padding: 1.05vw 1.2vw;
+
+    /* 카드 배경: 흰색 위에서 은은하게 떠 보이게 합니다. */
+    background: rgba(255, 255, 255, 0.78);
+
+    /* 카드 테두리: 정보 박스의 경계를 깔끔하게 잡습니다. */
+    border: 1px solid rgba(1, 73, 111, 0.1);
+
+    /* 모서리: 8px 이하로 정돈합니다. */
+    border-radius: 8px;
+}
+
+.announcementCard span {
+    /* 카드 라벨: 공급 위치, 공급 타입 같은 항목명입니다. */
+    display: block;
+
+    /* 라벨 아래 여백: 값과 분리합니다. */
+    margin-bottom: 0.36vw;
+
+    /* 라벨 크기: 보조 정보로 작게 표시합니다. */
+    font-size: 0.72vw;
+
+    /* 라벨 굵기: 작은 글자를 선명하게 합니다. */
+    font-weight: 900;
+
+    /* 라벨 색상: 골드 포인트입니다. */
+    color: #b8893f;
+}
+
+.announcementCard strong {
+    /* 카드 값 표시: 핵심 정보를 굵게 보여줍니다. */
+    display: block;
+
+    /* 카드 값 크기: PC에서 한눈에 읽히는 크기입니다. */
+    font-size: 0.8vw;
+
+    /* 카드 값 굵기: 정보 위계를 높입니다. */
+    font-weight: 900;
+
+    /* 카드 값 색상: 브랜드 네이비입니다. */
+    color: #01496f;
+
+    /* 한글 줄바꿈: 문구가 카드 밖으로 나가지 않게 합니다. */
+    word-break: keep-all;
+}
+
+.summaryPdfButton {
+    /* 버튼 기본 초기화: 브라우저 기본 버튼 스타일을 제거합니다. */
+    border: 0;
+    outline: none;
+
+    /* 버튼 배치: 아이콘, 텍스트, 화살표를 가로로 정렬합니다. */
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+
+    /* 버튼 간격: 아이콘과 텍스트가 답답하지 않게 합니다. */
+    gap: 1vw;
+
+    /* 버튼 여백: 클릭 영역을 넉넉하게 만듭니다. */
+    padding: 1.15vw 1.25vw;
+
+    /* 버튼 배경: 빨간 버튼 대신 브랜드 네이비와 골드 포인트로 고급화합니다. */
+    background:
+        linear-gradient(135deg, #01496f 0%, #06243b 100%);
+
+    /* 버튼 글자색: 어두운 배경에서 선명하게 보입니다. */
+    color: #ffffff;
+
+    /* 버튼 모서리: 8px로 단정하게 정리합니다. */
+    border-radius: 8px;
+
+    /* 버튼 그림자: 축약본 CTA가 페이지에서 중요한 행동으로 보이게 합니다. */
+    box-shadow: 0 20px 38px rgba(1, 73, 111, 0.22);
+
+    /* 클릭 가능 표시입니다. */
+    cursor: pointer;
+
+    /* 전환: hover 움직임을 부드럽게 합니다. */
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.summaryPdfButton:hover {
+    /* hover 이동: 버튼이 살짝 올라오며 조작감을 줍니다. */
+    transform: translateY(-3px);
+
+    /* hover 그림자: 중요한 CTA가 조금 더 강조됩니다. */
+    box-shadow: 0 26px 48px rgba(1, 73, 111, 0.3);
+}
+
+.summaryPdfIcon {
+    /* 아이콘 박스 크기: PDF 아이콘이 안정적으로 들어가는 영역입니다. */
+    width: 3vw;
+    height: 3vw;
+
+    /* 아이콘 박스 정렬: 아이콘을 중앙에 놓습니다. */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    /* 아이콘 박스 배경: 골드 포인트를 은은하게 표현합니다. */
+    background: rgba(212, 175, 55, 0.14);
+
+    /* 아이콘 박스 테두리: 밝은 라인으로 구분합니다. */
+    border: 1px solid rgba(212, 175, 55, 0.34);
+
+    /* 아이콘 박스 모서리: 8px 이하로 유지합니다. */
+    border-radius: 8px;
+
+    /* 아이콘 색상: 골드 포인트입니다. */
+    color: #d4af37;
+}
+
+.summaryPdfIcon svg {
+    /* PDF 아이콘 크기: 버튼 안에서 과하게 커지지 않게 합니다. */
+    width: 1.3vw;
+    height: 1.3vw;
+}
+
+.summaryPdfText {
+    /* 텍스트 배치: 제목과 설명을 세로로 묶습니다. */
+    display: flex;
+    flex-direction: column;
+
+    /* 텍스트 정렬: 버튼 안에서 왼쪽 기준으로 읽게 합니다. */
+    text-align: left;
+}
+
+.summaryPdfText strong {
+    /* CTA 제목 크기: 버튼의 가장 중요한 문구입니다. */
+    font-size: 1.02vw;
+
+    /* CTA 제목 굵기: 클릭 행동을 명확히 합니다. */
+    font-weight: 900;
+
+    /* CTA 제목 줄 높이: 버튼 높이를 안정화합니다. */
+    line-height: 1.3;
+}
+
+.summaryPdfText em {
+    /* CTA 설명 여백: 제목과 설명 사이의 거리입니다. */
+    margin-top: 0.28vw;
+
+    /* CTA 설명 기본 italic 제거: 안내문처럼 읽히게 합니다. */
+    font-style: normal;
+
+    /* CTA 설명 크기: 보조 정보로 작게 표시합니다. */
+    font-size: 0.72vw;
+
+    /* CTA 설명 색상: 흰색보다 낮은 대비로 차분하게 보입니다. */
+    color: rgba(255, 255, 255, 0.68);
+}
+
+.summaryPdfArrow {
+    /* 외부 열기 아이콘 크기: 버튼 우측의 보조 아이콘입니다. */
+    width: 1vw;
+    height: 1vw;
+
+    /* 아이콘 색상: 골드 포인트입니다. */
+    color: #d4af37;
+}
+
+.announcementPreview {
+    /* 미리보기 폭: 상단 안내와 같은 폭을 사용합니다. */
+    width: min(88vw, 1280px);
+
+    /* 미리보기 위치: 상단 안내 아래로 충분히 떨어뜨립니다. */
+    margin: 4vw auto 0;
+}
+
+.announcementPreviewHead {
+    /* 미리보기 제목 영역 최대 폭: 설명 문장이 너무 길어지지 않게 합니다. */
+    max-width: 760px;
+
+    /* 아래 여백: 제목 영역과 이미지 미리보기를 분리합니다. */
+    margin-bottom: 2vw;
+}
+
+.announcementPreviewHead h3 {
+    /* 미리보기 제목 여백 제거입니다. */
+    margin: 0;
+
+    /* 미리보기 제목 크기: 페이지 중간 제목으로 적절한 크기입니다. */
+    font-size: 2vw;
+
+    /* 미리보기 제목 굵기: 정보 위계를 분명하게 합니다. */
+    font-weight: 900;
+
+    /* 미리보기 제목 색상: 브랜드 네이비입니다. */
+    color: #01496f;
+}
+
+.announcementPreviewHead p {
+    /* 미리보기 설명 여백: 제목과 설명 사이 거리입니다. */
+    margin: 1vw 0 0;
+
+    /* 미리보기 설명 크기: 안내 문구로 읽기 좋은 크기입니다. */
+    font-size: 0.92vw;
+
+    /* 미리보기 설명 줄 높이: 긴 문장이 편하게 읽힙니다. */
+    line-height: 1.72;
+
+    /* 미리보기 설명 색상: 제목보다 낮은 대비입니다. */
+    color: rgba(20, 32, 42, 0.68);
+
+    /* 한글 줄바꿈: 자연스러운 줄바꿈을 돕습니다. */
+    word-break: keep-all;
+}
+
+.announcementImageFrame {
+    /* 이미지 프레임 폭: 대표 홈페이지처럼 문서 이미지가 정돈된 폭 안에 들어오게 합니다. */
+    width: min(100%, 1120px);
+
+    /* 이미지 프레임 가운데 정렬입니다. */
+    margin: 0 auto;
+
+    /* 프레임 여백: 이미지 주변에 흰 여백을 두어 문서 미리보기를 고급스럽게 보이게 합니다. */
+    padding: 1.2vw;
+
+    /* 프레임 배경: 문서 이미지 뒤에 흰색 종이 느낌을 줍니다. */
+    background: #ffffff;
+
+    /* 프레임 테두리: 이미지 영역을 본문과 구분합니다. */
+    border: 1px solid rgba(1, 73, 111, 0.12);
+
+    /* 프레임 모서리: 8px 이하로 유지합니다. */
+    border-radius: 8px;
+
+    /* 프레임 그림자: 이미지가 페이지 위에 차분하게 올라와 보입니다. */
+    box-shadow: 0 26px 56px rgba(20, 32, 42, 0.08);
+}
+
+.announcementImage {
+    /* 이미지 폭: 프레임 안에서 전체 폭을 사용합니다. */
+    width: 100%;
+
+    /* 이미지 높이: 원본 비율을 유지합니다. */
+    height: auto;
+
+    /* 이미지 표시: inline 공백을 없앱니다. */
+    display: block;
+
+    /* 이미지 모서리: 프레임 안쪽과 맞춥니다. */
+    border-radius: 6px;
+
+    /* 이미지 초기 상태: 로드 후 fade/zoom 애니메이션을 준비합니다. */
+    opacity: 0;
+    transform: scale(1.015);
+
+    /* 이미지 전환: 자연스럽게 나타나게 합니다. */
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.announcementImage.showImage2 {
+    /* 이미지 로드 후 표시 상태입니다. */
+    opacity: 1;
+    transform: scale(1);
+}
+
+.announcementNotice {
+    /* 안내문 폭: 상단/미리보기와 같은 폭을 사용합니다. */
+    width: min(88vw, 1280px);
+
+    /* 안내문 위치: 이미지 아래 여백입니다. */
+    margin: 1.6vw auto 0;
+
+    /* 안내문 여백: 텍스트가 가장자리에 붙지 않게 합니다. */
+    padding: 1vw 1.2vw;
+
+    /* 안내문 배경: 주의 문구가 과하게 튀지 않도록 옅은 톤을 사용합니다. */
+    background: rgba(255, 255, 255, 0.64);
+
+    /* 안내문 테두리: 문서 안내 영역임을 구분합니다. */
+    border: 1px solid rgba(1, 73, 111, 0.08);
+
+    /* 안내문 모서리: 8px 이하로 유지합니다. */
+    border-radius: 8px;
+}
+
+.announcementNotice p {
+    /* 안내문 여백 제거: 박스 내부 padding으로 간격을 관리합니다. */
+    margin: 0;
+
+    /* 안내문 글자 크기: 보조 정보로 작게 둡니다. */
+    font-size: 0.78vw;
+
+    /* 안내문 줄 높이: 작은 글자가 뭉치지 않게 합니다. */
+    line-height: 1.65;
+
+    /* 안내문 색상: 낮은 대비로 차분하게 처리합니다. */
+    color: rgba(20, 32, 42, 0.62);
+
+    /* 한글 줄바꿈: 문구가 자연스럽게 내려가게 합니다. */
+    word-break: keep-all;
+}
+
+/* =========================
+   모바일 스타일
+   - PC 스타일과 섞이지 않도록 모든 모바일 조정은 이 아래에서만 관리합니다.
+========================= */
+
+@media (max-width: 900px) {
+    .image {
+        /* 기존 안내 이미지 폭: 모바일 화면을 기준으로 꽉 차게 보여줍니다. */
+        width: 100vw;
+    }
+
+    .image1,
+    .image2 {
+        /* 기존 공고 이미지 폭: 화면 좌우 여백을 남겨 답답함을 줄입니다. */
+        width: 90%;
+    }
+
+    .commonBox,
+    .commonBox2 {
+        /* 기존 안내 박스 폭: 모바일에서 본문 폭과 균형을 맞춥니다. */
+        width: 90%;
+
+        .notice {
+            /* 기존 안내문 좌우 여백: 작은 화면에서 문장이 가장자리에 붙지 않게 합니다. */
+            padding: 0 3vw;
+
+            /* 기존 안내문 글자 크기: 모바일 기준으로 작게 읽히도록 조정합니다. */
+            font-size: 2.5vw;
+
+            /* 기존 안내문 줄 높이: 문장 사이가 과하게 벌어지지 않게 합니다. */
+            line-height: 3vw;
+
+            /* 기존 안내문 들여쓰기: ※ 표시가 문장 앞에서 정돈되게 합니다. */
+            text-indent: -2vw;
+        }
+    }
+
+    .pdfButton {
+        /* 기존 PDF 버튼 위 여백: 이미지와 버튼 사이의 간격입니다. */
+        margin-top: 4vw;
+
+        /* 기존 PDF 버튼 폭: 모바일에서 너무 넓지 않게 조정합니다. */
+        width: 60vw;
+
+        /* 기존 PDF 버튼 안쪽 여백: 버튼 높이를 줄입니다. */
+        padding: 7px 20px;
+
+        /* 기존 PDF 버튼 글자 크기: 모바일에서 버튼 문구가 과하게 커지지 않게 합니다. */
+        font-size: 3.5vw;
+    }
+
+    .pdfButton span {
+        /* 기존 PDF 버튼 내부 글자: 부모 버튼 크기를 그대로 따르게 합니다. */
+        font-size: inherit;
+    }
+
+    .pdfIcon {
+        /* 기존 PDF 아이콘 크기: 모바일 버튼 안에서 아이콘이 과하게 커지지 않게 합니다. */
+        width: 50px;
+        height: 50px;
+
+        /* 기존 PDF 아이콘 오른쪽 여백: 아이콘과 문구 사이 간격입니다. */
+        margin-right: 30px;
+    }
+
+    .announcementPage {
+        /* 모집공고 페이지 모바일 위아래 여백: 본문이 메뉴바에 붙지 않게 합니다. */
+        padding: 9vw 0 16vw;
+
+        /* 모집공고 페이지 모바일 배경: PC의 좌측 컬러 면을 제거해 좁은 화면을 단정하게 만듭니다. */
+        background: #fbf7ef;
+    }
+
+    .announcementHero {
+        /* 모집공고 상단 박스 폭: 모바일 화면 안에서 좌우 여백을 확보합니다. */
+        width: min(90vw, 560px);
+
+        /* 모집공고 상단 배치: 모바일에서는 설명과 버튼 영역을 세로로 쌓습니다. */
+        grid-template-columns: 1fr;
+
+        /* 모집공고 상단 내부 간격: 설명과 카드 묶음 사이 거리입니다. */
+        gap: 6vw;
+
+        /* 모집공고 상단 안쪽 여백: 텍스트가 박스 가장자리에 붙지 않게 합니다. */
+        padding: 6vw;
+    }
+
+    .announcementIntro span,
+    .announcementPreviewHead span {
+        /* 모집공고 라벨 모바일 크기: 작은 영문 라벨의 크기입니다. */
+        margin-bottom: 2vw;
+        font-size: 2.1vw;
+    }
+
+    .announcementIntro h2 {
+        /* 모집공고 제목 모바일 크기: 첫 화면 제목의 크기입니다. */
+        font-size: 4vw;
+
+        /* 모집공고 제목 줄 높이: 두 줄 이상일 때 간격입니다. */
+        line-height: 1.2;
+    }
+
+    .announcementIntro p {
+        /* 모집공고 설명 위 여백: 제목과 설명 사이 거리입니다. */
+        margin-top: 3vw;
+
+        /* 모집공고 설명 글자 크기: 모바일 본문 읽기 크기입니다. */
+        font-size: 2.5vw;
+
+        /* 모집공고 설명 줄 높이: 긴 문장을 편하게 읽도록 합니다. */
+        line-height: 1.7;
+    }
+
+    .announcementAction {
+        /* 모집공고 카드와 PDF 버튼 사이 간격입니다. */
+        gap: 3vw;
+    }
+
+    .announcementCards {
+        /* 모집공고 요약 카드 간격: 카드끼리 붙어 보이지 않게 합니다. */
+        gap: 2.2vw;
+    }
+
+    .announcementCard {
+        /* 모집공고 요약 카드 안쪽 여백: 라벨과 값 주변 공간입니다. */
+        padding: 3.4vw;
+    }
+
+    .announcementCard span {
+        /* 모집공고 요약 카드 라벨 크기입니다. */
+        margin-bottom: 1.2vw;
+        font-size: 2.2vw;
+    }
+
+    .announcementCard strong {
+        /* 모집공고 요약 카드 핵심 문구 크기입니다. */
+        font-size: 2.5vw;
+    }
+
+    .summaryPdfButton {
+        /* 모집공고 PDF 버튼 내부 간격: 아이콘, 문구, 화살표 사이 거리입니다. */
+        gap: 3vw;
+
+        /* 모집공고 PDF 버튼 안쪽 여백: 모바일 터치 영역의 높이입니다. */
+        padding: 3.6vw;
+    }
+
+    .summaryPdfIcon {
+        /* 모집공고 PDF 버튼 아이콘 박스 크기입니다. */
+        width: 10vw;
+        height: 10vw;
+    }
+
+    .summaryPdfIcon svg {
+        /* 모집공고 PDF 버튼 아이콘 실제 크기입니다. */
+        width: 4.4vw;
+        height: 4.4vw;
+    }
+
+    .summaryPdfText strong {
+        /* 모집공고 PDF 버튼 제목 글자 크기입니다. */
+        font-size: 3vw;
+    }
+
+    .summaryPdfText em {
+        /* 모집공고 PDF 버튼 설명 위 여백과 글자 크기입니다. */
+        margin-top: 1vw;
+        font-size: 2.35vw;
+    }
+
+    .summaryPdfArrow {
+        /* 모집공고 PDF 버튼 오른쪽 아이콘 크기입니다. */
+        width: 3.2vw;
+        height: 3.2vw;
+    }
+
+    .announcementPreview {
+        /* 모집공고 미리보기 폭: 상단 박스와 같은 모바일 폭을 사용합니다. */
+        width: min(90vw, 560px);
+
+        /* 모집공고 미리보기 위 여백: 상단 안내와 이미지 영역 사이 거리입니다. */
+        margin-top: 9vw;
+    }
+
+    .announcementPreviewHead {
+        /* 모집공고 미리보기 제목 영역 아래 여백입니다. */
+        margin-bottom: 4vw;
+    }
+
+    .announcementPreviewHead h3 {
+        /* 모집공고 미리보기 제목 모바일 크기입니다. */
+        font-size: 4vw;
+    }
+
+    .announcementPreviewHead p {
+        /* 모집공고 미리보기 설명 위 여백과 글자 크기입니다. */
+        margin-top: 2.4vw;
+        font-size: 2.5vw;
+        line-height: 1.68;
+    }
+
+    .announcementImageFrame {
+        /* 모집공고 이미지 프레임 안쪽 여백: 문서 이미지 주변 흰 여백입니다. */
+        padding: 2.4vw;
+    }
+
+    .announcementNotice {
+        /* 모집공고 하단 안내문 폭: 모바일 본문 폭과 맞춥니다. */
+        width: min(90vw, 560px);
+
+        /* 모집공고 하단 안내문 위 여백입니다. */
+        margin-top: 3vw;
+
+        /* 모집공고 하단 안내문 안쪽 여백입니다. */
+        padding: 3vw;
+    }
+
+    .announcementNotice p {
+        /* 모집공고 하단 안내문 글자 크기입니다. */
+        font-size: 2.35vw;
+    }
+}
+
+/* =========================
+   페이지 공통 문구 / 안내 박스 - PC 보정
+   - MenuBar 아래 대표 문구와 주의문 박스를 통일합니다.
+========================= */
+@media (min-width: 901px) {
+    .textBox {
+        /* 문구 영역 폭: 긴 문장이 과하게 퍼지지 않도록 제한합니다. */
+        width: min(88vw, 1180px);
+
+        /* 문구 위아래 여백: 메뉴바와 본문 사이의 간격입니다. */
+        margin: 2vw auto 2.4vw;
+
+        /* 문구 정렬: 페이지 대표 문구는 중앙 정렬합니다. */
+        text-align: center;
+
+        /* 문구 등장 상태: 기존 애니메이션과 충돌하지 않도록 보이게 합니다. */
+        opacity: 1;
+    }
+
+    .textBox div:nth-of-type(1) {
+        /* 첫 번째 문구 크기: 보조 제목입니다. */
+        font-size: 2vw;
+        line-height: 1.35;
+        font-weight: 500;
+        color: #14202a;
+    }
+
+    .textBox div:nth-of-type(2) {
+        /* 두 번째 문구 크기: 핵심 강조 문구입니다. */
+        margin-top: 0.6vw;
+        font-size: 1vw;
+        line-height: 1.25;
+        font-weight: 900;
+        color: #01496f;
+    }
+
+    .textBox div:nth-of-type(3) {
+        /* 세 번째 문구 크기: 설명문입니다. */
+        margin-top: 1.05vw;
+        font-size: 1.08vw;
+        line-height: 1.75;
+        font-weight: 500;
+        color: rgba(20, 32, 42, 0.68);
+        word-break: keep-all;
+    }
+
+    .commonBox,
+    .commonBox2 {
+        /* 안내 박스 폭: 본문 이미지와 비슷한 폭으로 맞춥니다. */
+        width: min(88vw, 1280px);
+
+        /* 안내 박스 여백: 콘텐츠 하단에서 자연스럽게 분리합니다. */
+        margin: 2vw auto 4vw;
+
+        /* 안내 박스 안쪽 여백: 작은 문구가 가장자리에 붙지 않게 합니다. */
+        padding: 1vw 1.2vw;
+
+        /* 안내 박스 배경: 고급스럽고 차분한 흰색 톤입니다. */
+        background: rgba(255, 255, 255, 0.74);
+
+        /* 안내 박스 테두리: 아주 얇게 영역을 구분합니다. */
+        border: 1px solid rgba(1, 73, 111, 0.1);
+
+        /* 안내 박스 모서리: 8px 이하로 정돈합니다. */
+        border-radius: 8px;
+
+        /* 박스 크기 계산: padding 포함으로 폭을 유지합니다. */
+        box-sizing: border-box;
+    }
+
+    .commonBox .notice,
+    .commonBox2 .notice {
+        /* 안내문 여백: 부모 박스 padding으로 관리합니다. */
+        margin: 0;
+        padding: 0;
+
+        /* 안내문 글자 크기: PC 보조 문구 크기입니다. */
+        font-size: 0.78vw;
+
+        /* 안내문 줄 높이: 긴 주의문이 뭉치지 않게 합니다. */
+        line-height: 1.7;
+
+        /* 안내문 색상: 낮은 대비로 차분하게 처리합니다. */
+        color: rgba(20, 32, 42, 0.52);
+
+        /* 한글 줄바꿈: 문장이 자연스럽게 내려가게 합니다. */
+        word-break: keep-all;
+    }
+}
+
+/* =========================
+   페이지 공통 문구 / 안내 박스 - Mobile 보정
+   - 모바일 전용 문구와 안내 박스 크기입니다.
+========================= */
+@media (max-width: 900px) {
+    .textBox {
+        /* 모바일 문구 폭: 좌우 여백을 확보합니다. */
+        width: min(90vw, 560px);
+
+        /* 모바일 문구 여백: 메뉴바 아래 공간입니다. */
+        margin: 7vw auto 4.5vw;
+
+        /* 기존 큰 모바일 폰트 값을 덮어쓰기 위한 기본값입니다. */
+        font-size: initial;
+    }
+
+    .textBox div:nth-of-type(1) {
+        /* 모바일 첫 번째 문구 크기입니다. */
+        font-size: 3vw;
+        line-height: 1.35;
+    }
+
+    .textBox div:nth-of-type(2) {
+        /* 모바일 핵심 문구 크기입니다. */
+        margin-top: 1.4vw;
+        font-size: 3vw;
+        line-height: 1.34;
+    }
+
+    .textBox div:nth-of-type(3) {
+        /* 모바일 설명 문구 크기입니다. */
+        margin-top: 3vw;
+        font-size: 2.5vw;
+        line-height: 1.72;
+    }
+
+    .commonBox,
+    .commonBox2 {
+        /* 모바일 안내 박스 폭: 본문 폭과 맞춥니다. */
+        width: min(90vw, 560px);
+
+        /* 모바일 안내 박스 여백입니다. */
+        margin: 5vw auto 10vw;
+
+        /* 모바일 안내 박스 안쪽 여백입니다. */
+        padding: 3.5vw;
+    }
+
+    .commonBox .notice,
+    .commonBox2 .notice {
+        /* 모바일 안내문 글자 크기와 줄 높이입니다. */
+        padding: 0;
+        font-size: 2.5vw;
+        line-height: 1.72;
+        text-indent: 0;
+    }
+}

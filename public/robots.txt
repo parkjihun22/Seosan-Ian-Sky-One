@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.hg-prugioriverfront.co.kr/sitemap.xml

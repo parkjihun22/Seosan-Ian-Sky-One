@@ -1,0 +1,515 @@
+/* =========================
+   Footer 전체 영역
+   - 대표 홈페이지의 마지막 신뢰 정보를 보여주는 섹션입니다.
+   - 문구와 링크는 footerData.js에서 관리합니다.
+========================= */
+.footer {
+  /* 섹션 폭: 화면 전체를 사용하되 가로 스크롤을 만들지 않습니다. */
+  width: 100%;
+
+  /* 배경: 브랜드 네이비와 블랙을 섞어 하단 무게감을 만듭니다. */
+  background:
+    linear-gradient(135deg, rgba(1, 73, 111, 0.28), transparent 42%),
+    #061019;
+
+  /* 기본 글자색: 어두운 배경에서 읽히도록 흰색 계열을 사용합니다. */
+  color: #fff;
+
+  /* 넘침 방지: 드롭다운과 장식이 가로 스크롤을 만들지 않게 합니다. */
+  overflow: hidden;
+}
+
+/* =========================
+   Footer 내부 레이아웃
+========================= */
+.inner {
+  /* 내부 폭: 다른 메인 섹션과 같은 시각 폭을 사용합니다. */
+  width: min(88vw, 1480px);
+
+  /* 가운데 정렬: 대형 화면에서도 안정적으로 보이게 합니다. */
+  margin: 0 auto;
+
+  /* 안쪽 여백: Footer가 답답하지 않게 위아래 공간을 확보합니다. */
+  padding: 1.8vw 0 1.3vw;
+
+  /* PC 배치: 좌측 브랜드 정보와 우측 연락/버튼 영역으로 나눕니다. */
+  display: grid;
+  grid-template-columns: minmax(0, 0.58fr) minmax(340px, 0.42fr);
+
+  /* 열 간격: 정보와 행동 버튼을 분리합니다. */
+  gap: 2.2vw;
+
+  /* 상단 정렬: 긴 안내 문구와 우측 정보의 시작점을 맞춥니다. */
+  align-items: start;
+}
+
+/* =========================
+   브랜드 정보 영역
+========================= */
+.brandArea {
+  /* 최대 폭: 안내 문장이 너무 길게 퍼지지 않도록 합니다. */
+  max-width: 780px;
+}
+
+.eyebrow {
+  /* 라벨 표시: Footer 상단의 브랜드 영문 사인입니다. */
+  display: block;
+
+  /* 라벨 아래 간격: 제목과 분리합니다. */
+  margin-bottom: 6px;
+
+  /* 라벨 크기: 작고 단단하게 보이게 합니다. */
+  font-size: 0.56vw;
+
+  /* 라벨 두께: 어두운 배경에서 흐려지지 않게 합니다. */
+  font-weight: 900;
+
+  /* 라벨 자간: 고급스러운 브랜드 느낌을 만듭니다. */
+  letter-spacing: 0.18em;
+
+  /* 라벨 색상: 골드 포인트입니다. */
+  color: #d4af37;
+}
+
+.brandArea h2 {
+  /* 제목 여백 제거: 주변 간격을 명확히 관리합니다. */
+  margin: 0 0 0.7vw;
+
+  /* 제목 크기: Footer에서도 브랜드명이 분명히 보이게 합니다. */
+  font-size: 1.42vw;
+
+  /* 제목 두께: 하단 브랜드 인상을 강화합니다. */
+  font-weight: 900;
+
+  /* 줄 높이: 모바일 줄바꿈에도 안정적으로 보입니다. */
+  line-height: 1.18;
+
+  /* 제목 색상: 어두운 배경에서 명확하게 보입니다. */
+  color: #fff;
+}
+
+.brandArea p {
+  /* 문단 간격: 두 안내 문구가 붙어 보이지 않게 합니다. */
+  margin: 0 0 5px;
+
+  /* 문단 크기: 법적/안내성 문구로 차분하게 처리합니다. */
+  font-size: 0.66vw;
+
+  /* 문단 줄 높이: 긴 안내 문구를 편하게 읽도록 합니다. */
+  line-height: 1.42;
+
+  /* 문단 색상: 제목보다 낮은 대비입니다. */
+  color: rgba(255, 255, 255, 0.68);
+
+  /* 한국어 줄바꿈: 단어가 어색하게 끊기지 않게 합니다. */
+  word-break: keep-all;
+}
+
+/* =========================
+   우측 정보 영역
+========================= */
+.infoArea {
+  /* 우측 콘텐츠 배치: 연락처, 회사정보, 링크, 버튼을 세로 정렬합니다. */
+  display: flex;
+  flex-direction: column;
+
+  /* 요소 간격: 정보 그룹 사이에 일정한 간격을 둡니다. */
+  gap: 10px;
+
+  /* PC 정렬: 우측에 정돈된 정보 블록으로 보이게 합니다. */
+  align-items: flex-end;
+}
+
+.phone {
+  /* 전화 링크 배치: 아이콘과 번호를 가로로 둡니다. */
+  display: inline-flex;
+  align-items: center;
+
+  /* 아이콘과 번호 간격: 번호가 답답하지 않게 합니다. */
+  gap: 9px;
+
+  /* 링크 장식 제거: 버튼처럼 깔끔하게 보입니다. */
+  text-decoration: none;
+
+  /* 전화번호 크기: 상담 CTA로 충분히 눈에 띄게 합니다. */
+  font-size: 1.05vw;
+
+  /* 전화번호 두께: 연락 정보의 우선순위를 높입니다. */
+  font-weight: 900;
+
+  /* 전화번호 색상: 어두운 배경에서 선명하게 보입니다. */
+  color: #fff;
+}
+
+.phone svg {
+  /* 아이콘 색상: 전화번호와 같은 톤으로 맞춥니다. */
+  color: #fff;
+}
+
+.company {
+  /* 회사정보 여백 제거: dl 기본 여백을 초기화합니다. */
+  margin: 0;
+
+  /* 회사정보 색상: 보조 정보로 낮은 대비를 사용합니다. */
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.company div {
+  /* 회사정보 배치: 라벨과 값을 가로로 정렬합니다. */
+  display: flex;
+  align-items: center;
+
+  /* 라벨과 값 사이 간격입니다. */
+  gap: 12px;
+}
+
+.company dt {
+  /* 라벨 크기: 작지만 또렷하게 보이게 합니다. */
+  font-size: 0.86rem;
+
+  /* 라벨 두께: 정보 라벨을 구분합니다. */
+  font-weight: 900;
+
+  /* 라벨 색상: 골드 포인트입니다. */
+  color: #d4af37;
+}
+
+.company dd {
+  /* 값 여백 제거: dl 기본 여백을 없앱니다. */
+  margin: 0;
+
+  /* 값 크기: 보조 정보로 적절한 크기입니다. */
+  font-size: 0.78rem;
+}
+
+/* 하단 메뉴 */
+.footerNav {
+  /* 메뉴 배치: 주요 링크를 가로로 정렬합니다. */
+  display: flex;
+  flex-wrap: wrap;
+
+  /* 링크 간격: 메뉴가 붙어 보이지 않게 합니다. */
+  gap: 6px 12px;
+
+  /* PC 정렬: 우측 정보 영역과 맞춥니다. */
+  justify-content: flex-end;
+}
+
+.footerNav a {
+  /* 링크 장식 제거: 하단 메뉴를 깔끔하게 보이게 합니다. */
+  text-decoration: none;
+
+  /* 링크 크기: 보조 메뉴로 적절한 크기입니다. */
+  font-size: 0.76rem;
+
+  /* 링크 두께: 어두운 배경에서 읽히게 합니다. */
+  font-weight: 800;
+
+  /* 링크 색상: 기본은 부드러운 흰색입니다. */
+  color: rgba(255, 255, 255, 0.78);
+
+  /* 링크 전환: hover 반응을 자연스럽게 합니다. */
+  transition: color 0.25s ease;
+}
+
+.footerNav a:hover {
+  /* hover 색상: 골드 포인트로 현재 조작감을 줍니다. */
+  color: #d4af37;
+}
+
+/* 버튼 묶음 */
+.actions {
+  /* 버튼 배치: 방문예약과 패밀리 사이트를 가로로 둡니다. */
+  display: flex;
+
+  /* 버튼 간격: 두 버튼이 붙지 않게 합니다. */
+  gap: 10px;
+
+  /* 드롭다운 기준: family site 목록 위치를 안정화합니다. */
+  position: relative;
+}
+
+.reserveBtn,
+.familyBtn {
+  /* 버튼 높이: 클릭 가능한 충분한 크기를 확보합니다. */
+  min-height: 34px;
+
+  /* 버튼 여백: 텍스트가 좌우로 답답하지 않게 합니다. */
+  padding: 0 13px;
+
+  /* 버튼 모서리: 프로젝트 규칙에 맞춰 8px 이하로 유지합니다. */
+  border-radius: 8px;
+
+  /* 버튼 글자 크기: 명확한 CTA 크기입니다. */
+  font-size: 0.78rem;
+
+  /* 버튼 글자 두께: 행동 요소임을 강조합니다. */
+  font-weight: 900;
+
+  /* 폰트 상속: 프로젝트 폰트와 맞춥니다. */
+  font-family: inherit;
+
+  /* 클릭 가능 표시: 버튼임을 알립니다. */
+  cursor: pointer;
+
+  /* 전환: hover 반응을 부드럽게 합니다. */
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.reserveBtn {
+  /* 방문예약 배경: 핵심 CTA로 브랜드 블루를 사용합니다. */
+  background: #01496f;
+
+  /* 방문예약 테두리: 배경과 맞춰 단단하게 보이게 합니다. */
+  border: 1px solid #01496f;
+
+  /* 방문예약 글자색: 어두운 배경에서 선명하게 보입니다. */
+  color: #fff;
+}
+
+.reserveBtn:hover {
+  /* hover 배경: 조금 더 깊은 네이비로 반응합니다. */
+  background: #0b314f;
+  border-color: #0b314f;
+}
+
+.familySite {
+  /* 드롭다운 위치 기준: 목록이 버튼 위로 정확히 뜨게 합니다. */
+  position: relative;
+}
+
+.familyBtn {
+  /* 패밀리 버튼 배치: 텍스트와 아이콘을 중앙 정렬합니다. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 아이콘과 텍스트 간격입니다. */
+  gap: 8px;
+
+  /* 패밀리 버튼 배경: 보조 버튼이므로 투명하게 둡니다. */
+  background: transparent;
+
+  /* 패밀리 버튼 테두리: 흰색 라인으로 구분합니다. */
+  border: 1px solid rgba(255, 255, 255, 0.34);
+
+  /* 패밀리 버튼 글자색: 흰색 계열입니다. */
+  color: #fff;
+}
+
+.familyBtn:hover {
+  /* hover 배경: 어두운 배경 위에서 살짝 밝아집니다. */
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.58);
+}
+
+.familyList {
+  /* 목록 위치: 버튼 위쪽으로 펼쳐지게 합니다. */
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+
+  /* 목록 폭: 사이트명이 잘리지 않게 최소 폭을 둡니다. */
+  min-width: 260px;
+
+  /* 기본 리스트 여백 제거입니다. */
+  margin: 0;
+  padding: 8px;
+
+  /* 리스트 스타일 제거: 커스텀 메뉴처럼 보이게 합니다. */
+  list-style: none;
+
+  /* 목록 배경: footer보다 살짝 밝은 네이비입니다. */
+  background: #0b314f;
+
+  /* 목록 테두리: 드롭다운 경계를 만듭니다. */
+  border: 1px solid rgba(255, 255, 255, 0.16);
+
+  /* 목록 모서리: 8px 이하로 유지합니다. */
+  border-radius: 8px;
+
+  /* 목록 그림자: 버튼 위에 떠 보이게 합니다. */
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+}
+
+.familyList a {
+  /* 목록 링크 배치: 클릭 영역을 넓게 만듭니다. */
+  display: block;
+
+  /* 목록 링크 여백: 텍스트가 붙지 않게 합니다. */
+  padding: 10px 12px;
+
+  /* 링크 장식 제거입니다. */
+  text-decoration: none;
+
+  /* 링크 크기: 드롭다운 메뉴에 맞는 크기입니다. */
+  font-size: 0.9rem;
+
+  /* 링크 색상: 어두운 배경에서 읽히게 합니다. */
+  color: rgba(255, 255, 255, 0.82);
+
+  /* 링크 모서리: hover 배경이 부드럽게 보이게 합니다. */
+  border-radius: 6px;
+}
+
+.familyList a:hover {
+  /* hover 배경: 메뉴 선택감을 줍니다. */
+  background: rgba(255, 255, 255, 0.08);
+
+  /* hover 색상: 선명한 흰색으로 바꿉니다. */
+  color: #fff;
+}
+
+/* =========================
+   Copyright 영역
+========================= */
+.bottom {
+  /* 상단 경계선: 주요 정보와 저작권 영역을 나눕니다. */
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* 내부 폭: 상단 콘텐츠와 같은 폭을 유지합니다. */
+  width: min(88vw, 1480px);
+
+  /* 가운데 정렬: 전체 레이아웃과 맞춥니다. */
+  margin: 0 auto;
+
+  /* 저작권 여백: 너무 붙어 보이지 않게 합니다. */
+  padding: 9px 0 12px;
+}
+
+.bottom p {
+  /* 기본 여백 제거입니다. */
+  margin: 0;
+
+  /* 저작권 글자 크기: 보조 정보로 작게 둡니다. */
+  font-size: 0.68rem;
+
+  /* 저작권 색상: 낮은 대비로 차분하게 보입니다. */
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.familySiteNoscript {
+  /* noscript 영역 여백: 스크립트 비활성 환경에서만 보입니다. */
+  padding: 20px;
+}
+
+/* =========================
+   모바일 스타일
+========================= */
+
+
+/* =========================
+   모바일 Footer
+========================= */
+@media (max-width: 900px) {
+  .inner {
+    /* 모바일 내부 폭: 좌우 여백을 확보합니다. */
+    width: min(92vw, 560px);
+
+    /* 모바일 여백: Footer 높이가 과하게 길어지지 않도록 위아래 공간을 줄입니다. */
+    padding: 4.5vw 0 3vw;
+
+    /* 모바일 배치: 모든 정보를 세로로 쌓습니다. */
+    display: flex;
+    flex-direction: column;
+
+    /* 모바일 간격: 정보 그룹 사이의 빈 공간을 압축합니다. */
+    gap: 2.6vw;
+  }
+
+  .eyebrow {
+    /* 모바일 상단 라벨 크기: 아주 작은 브랜드 라벨이 과하게 튀지 않게 합니다. */
+    font-size: 1.45vw;
+  }
+
+  .brandArea h2 {
+    /* 모바일 브랜드명 크기: Footer 제목이 본문보다 살짝 크되 부담스럽지 않게 합니다. */
+    font-size: 4vw;
+  }
+
+  .brandArea p {
+    /* 모바일 안내문 크기: 긴 안내 문구가 화면을 많이 차지하지 않게 합니다. */
+    font-size: 2.25vw;
+
+    /* 모바일 안내문 줄 높이: 작은 글자도 읽히도록 줄 간격을 유지합니다. */
+    line-height: 1.55;
+  }
+
+  .infoArea {
+    /* 모바일 정렬: 왼쪽 기준으로 읽기 쉽게 바꿉니다. */
+    align-items: flex-start;
+
+    /* 모바일 정보 간격: 연락처와 회사 정보가 과하게 벌어지지 않게 합니다. */
+    gap: 2vw;
+  }
+
+  .phone {
+    /* 모바일 전화번호 크기: 푸터 안에서 필요한 만큼만 강조합니다. */
+    font-size: 2.35vw;
+  }
+
+  .company dt {
+    /* 모바일 회사 라벨 크기: 시행 같은 작은 정보 라벨입니다. */
+    font-size: 2vw;
+  }
+
+  .company dd {
+    /* 모바일 회사명 크기: 라벨 옆 실제 회사 정보입니다. */
+    font-size: 2vw;
+  }
+
+  .footerNav {
+    /* 모바일 메뉴 정렬: 왼쪽부터 자연스럽게 줄바꿈합니다. */
+    justify-content: flex-start;
+
+    /* 모바일 메뉴 간격: 하단 링크들이 촘촘하게 정리되게 합니다. */
+    gap: 1.4vw 2.4vw;
+  }
+
+  .footerNav a {
+    /* 모바일 하단 메뉴 크기: 보조 링크라서 본문보다 작게 둡니다. */
+    font-size: 2vw;
+  }
+
+  .actions {
+    /* 모바일 버튼 배치: 두 버튼을 세로로 쌓아 터치하기 쉽게 합니다. */
+    width: 100%;
+    flex-direction: column;
+
+    /* 모바일 버튼 간격: 두 버튼 사이 공간입니다. */
+    gap: 2vw;
+  }
+
+  .reserveBtn,
+  .familyBtn {
+    /* 모바일 버튼 폭: 한 손 조작이 쉽도록 전체 폭을 사용합니다. */
+    width: 100%;
+
+    /* 모바일 버튼 높이: Footer CTA가 과하게 커지지 않게 합니다. */
+    min-height: 8.2vw;
+
+    /* 모바일 버튼 글자 크기: 방문예약/패밀리사이트 문구 크기입니다. */
+    font-size: 2.35vw;
+  }
+
+  .familyList {
+    /* 모바일 드롭다운 위치: 버튼 위에서 좌우 폭을 맞춥니다. */
+    left: 0;
+    right: auto;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .bottom {
+    /* 모바일 저작권 폭: 상단과 같은 폭으로 맞춥니다. */
+    width: min(92vw, 560px);
+
+    /* 모바일 하단 여백: 고정 버튼 영역을 고려합니다. */
+    padding-bottom: 44px;
+  }
+
+  .bottom p {
+    /* 모바일 저작권 크기: 가장 낮은 정보 위계로 작게 처리합니다. */
+    font-size: 1.9vw;
+  }
+}

@@ -1,0 +1,190 @@
+/* =========================
+   MenuBar 공통 영역
+   - 브랜드/사업/분양/단지 등 서브페이지 하위 메뉴에 재사용됩니다.
+   - PC 수정은 이 영역에서 진행하고, 모바일 수정은 파일 하단 @media 안에서 진행합니다.
+========================= */
+.container {
+  /* 메뉴바 전체 폭: 페이지 가로폭을 꽉 채워 하위 메뉴 영역을 명확히 구분합니다. */
+  width: 100%;
+
+  /* 메뉴바 배경: 흰색보다 따뜻한 톤으로 본문과 자연스럽게 이어지게 합니다. */
+  background:
+    linear-gradient(180deg, #fbf7ef 0%, #f6efe4 100%);
+
+  /* 상단선: 배너와 메뉴바 사이를 얇게 분리합니다. */
+  border-top: 1px solid rgba(1, 73, 111, 0.08);
+
+  /* 하단선: 메뉴바와 페이지 본문을 정돈합니다. */
+  border-bottom: 1px solid rgba(1, 73, 111, 0.1);
+
+  /* 내부 여백: 메뉴가 위아래로 답답하지 않게 합니다. */
+  padding: 0.9vw 0;
+
+  /* 크기 계산: padding 포함으로 가로 스크롤이 생기지 않게 합니다. */
+  box-sizing: border-box;
+}
+
+.inner {
+  /* 메뉴 내부 폭: 다른 서브페이지 콘텐츠와 비슷한 폭으로 맞춥니다. */
+  width: min(88vw, 1180px);
+
+  /* 가운데 정렬: 넓은 화면에서도 메뉴가 중앙에 놓이게 합니다. */
+  margin: 0 auto;
+
+  /* 메뉴 배치: 항목을 가로 탭처럼 정렬합니다. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 메뉴 간격: 탭 사이를 충분히 띄워 고급스럽게 보이게 합니다. */
+  gap: 0.7vw;
+}
+
+.item,
+.selectedItem {
+  /* 링크 장식 제거: 기본 밑줄을 없애 탭처럼 보이게 합니다. */
+  text-decoration: none;
+
+  /* 위치 기준: 선택 상태의 하단 라인을 만들기 위한 기준입니다. */
+  position: relative;
+
+  /* 탭 배치: 텍스트를 중앙에 안정적으로 놓습니다. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* 탭 최소 높이: PC에서 클릭하기 좋은 높이입니다. */
+  min-height: 2.8vw;
+
+  /* 탭 좌우 여백: 메뉴명이 답답하지 않게 합니다. */
+  padding: 0 1.6vw;
+
+  /* 탭 모서리: 과한 알약형이 아니라 단정한 라운드로 유지합니다. */
+  border-radius: 8px;
+
+  /* 탭 테두리: 기본 상태에서도 메뉴 영역이 은은하게 구분됩니다. */
+  border: 1px solid rgba(1, 73, 111, 0.14);
+
+  /* 탭 배경: 밝은 배경 위에서 부드럽게 떠 보이게 합니다. */
+  background: rgba(255, 255, 255, 0.68);
+
+  /* 탭 글자 크기: PC 하위 메뉴의 기본 크기입니다. */
+  font-size: 0.82vw;
+
+  /* 탭 글자 굵기: 메뉴명이 선명하게 읽히도록 합니다. */
+  font-weight: 800;
+
+  /* 탭 글자색: 브랜드 네이비를 사용합니다. */
+  color: #01496f;
+
+  /* 폰트: 프로젝트 기본 폰트와 톤을 맞춥니다. */
+  font-family: 'Pretendard-Regular', sans-serif;
+
+  /* 줄바꿈 방지: 메뉴명이 한 줄로 유지됩니다. */
+  white-space: nowrap;
+
+  /* 전환: hover와 선택 상태가 부드럽게 바뀝니다. */
+  transition: transform 0.24s ease, background 0.24s ease, border-color 0.24s ease, color 0.24s ease, box-shadow 0.24s ease;
+}
+
+.item:hover {
+  /* hover 이동: 탭이 살짝 떠오르며 조작감을 줍니다. */
+  transform: translateY(-2px);
+
+  /* hover 배경: 흰색으로 밝아져 선택 가능성을 보여줍니다. */
+  background: #ffffff;
+
+  /* hover 테두리: 골드 포인트로 고급감을 줍니다. */
+  border-color: rgba(184, 137, 63, 0.5);
+
+  /* hover 그림자: 탭이 배경에서 살짝 분리됩니다. */
+  box-shadow: 0 12px 24px rgba(20, 32, 42, 0.08);
+}
+
+.selectedItem {
+  /* 선택 배경: 현재 페이지 탭은 네이비로 명확히 표시합니다. */
+  background: #01496f;
+
+  /* 선택 테두리: 배경과 같은 톤으로 단단하게 보이게 합니다. */
+  border-color: #01496f;
+
+  /* 선택 글자색: 어두운 배경에서 선명한 흰색을 사용합니다. */
+  color: #ffffff;
+
+  /* 선택 그림자: 현재 페이지 탭의 위계를 높입니다. */
+  box-shadow: 0 14px 28px rgba(1, 73, 111, 0.18);
+}
+
+.selectedItem::after {
+  /* 선택 라인: 현재 탭 아래에 골드 라인을 얇게 표시합니다. */
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -0.9vw;
+
+  /* 라인 크기: 탭보다 짧게 표시해 과하지 않게 강조합니다. */
+  width: 42%;
+  height: 2px;
+
+  /* 라인 색상: 브랜드 골드 포인트입니다. */
+  background: #d4af37;
+
+  /* 가운데 정렬: 탭 중앙에 라인이 놓입니다. */
+  transform: translateX(-50%);
+}
+
+/* =========================
+   모바일 스타일
+   - 모바일 메뉴 크기와 스크롤은 여기에서만 수정합니다.
+========================= */
+@media (max-width: 900px) {
+  .container {
+    /* 모바일 메뉴바 여백: 고정 헤더 아래 본문 흐름과 자연스럽게 이어지게 합니다. */
+    padding: 3vw 0;
+
+    /* 모바일 가로 넘침 방지: 내부 메뉴는 가로 스크롤로 처리합니다. */
+    overflow: hidden;
+  }
+
+  .inner {
+    /* 모바일 메뉴 폭: 화면 안쪽 여백을 유지합니다. */
+    width: 92vw;
+
+    /* 모바일 정렬: 항목이 적어도 왼쪽부터 시작해 자연스럽게 보입니다. */
+    justify-content: flex-start;
+
+    /* 모바일 간격: 손가락 터치 영역 사이 공간입니다. */
+    gap: 2vw;
+
+    /* 모바일 스크롤: 메뉴가 많을 때 가로로 넘겨 볼 수 있게 합니다. */
+    overflow-x: auto;
+
+    /* 모바일 스크롤 여백: 선택 라인이 잘리지 않도록 아래 공간을 둡니다. */
+    padding: 0 0 2vw;
+
+    /* 모바일 스크롤 감각: 터치 스크롤을 부드럽게 합니다. */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .inner::-webkit-scrollbar {
+    /* 모바일 스크롤바 숨김: 탭 메뉴가 더 깔끔하게 보이도록 합니다. */
+    display: none;
+  }
+
+  .item,
+  .selectedItem {
+    /* 모바일 탭 높이: 터치하기 좋은 높이를 유지합니다. */
+    min-height: 9vw;
+
+    /* 모바일 탭 여백: 메뉴명이 잘리지 않도록 좌우 여백을 줍니다. */
+    padding: 0 4vw;
+
+    /* 모바일 글자 크기: 작은 화면에서 읽기 쉬운 크기입니다. */
+    font-size: 2.8vw;
+  }
+
+  .selectedItem::after {
+    /* 모바일 선택 라인 위치: 탭 아래에서 자연스럽게 보이게 합니다. */
+    bottom: -1.8vw;
+  }
+}

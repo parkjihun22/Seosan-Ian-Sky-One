@@ -1,0 +1,262 @@
+/* =========================
+   서브페이지 배너 전체 영역
+   - 브랜드, 분양안내, 단지안내 등 서브페이지 상단에서 재사용됩니다.
+   - PC 스타일은 위쪽, 모바일 스타일은 파일 하단에서만 수정합니다.
+========================= */
+.container {
+  /* 배너 폭: 브라우저 전체 폭을 사용합니다. */
+  width: 100%;
+
+  /* 위치 기준: 이미지, 오버레이, 텍스트를 같은 영역 안에서 겹칩니다. */
+  position: relative;
+
+  /* 넘침 방지: 이미지 확대 애니메이션이 화면 밖으로 나가도 스크롤이 생기지 않게 합니다. */
+  overflow: hidden;
+
+  /* 배경: 이미지 로딩 전에도 어두운 브랜드 톤이 보이도록 합니다. */
+  background: #061019;
+
+  /* 배너 하단선: 메뉴바와 자연스럽게 분리합니다. */
+  border-bottom: 1px solid rgba(1, 73, 111, 0.12);
+}
+
+.benerImage {
+  /* 이미지 폭: 배너 전체를 채웁니다. */
+  width: 100%;
+
+  /* PC 배너 높이: 값을 키우면 배너가 더 웅장해지고, 줄이면 본문이 빨리 보입니다. */
+  height: 38vh;
+
+  /* 이미지 맞춤: 건물과 하늘이 자연스럽게 들어오도록 덮어 채웁니다. */
+  object-fit: cover;
+
+  /* 이미지 초점: 단지 전경이 너무 아래로 밀리지 않게 중앙 하단을 기준으로 둡니다. */
+  object-position: center 58%;
+
+  /* 이미지 톤: 원본의 밝은 느낌을 줄이고 고급스러운 대비를 만듭니다. */
+  filter: saturate(0.94) contrast(1.02);
+
+  /* 초기 상태: 로딩 직후 fade/zoom 효과를 준비합니다. */
+  opacity: 0;
+  transform: scale(1.06);
+
+  /* 전환: 과하지 않은 zoom + fade만 사용합니다. */
+  transition: opacity 1s ease, transform 1.2s ease;
+
+  /* 이미지 공백 제거: img 기본 inline 공백을 없앱니다. */
+  display: block;
+}
+
+.benerImage.showImage {
+  /* 로딩 후 표시: 이미지가 자연스럽게 나타납니다. */
+  opacity: 1;
+
+  /* 로딩 후 확대 복귀: 처음보다 차분하게 자리 잡습니다. */
+  transform: scale(1);
+}
+
+.overlay {
+  /* 오버레이 위치: 이미지 전체 위에 덮습니다. */
+  position: absolute;
+  inset: 0;
+
+  /* 오버레이 색상: 왼쪽 텍스트 가독성과 하단 깊이감을 동시에 확보합니다. */
+  background:
+    linear-gradient(90deg, rgba(2, 19, 33, 0.84) 0%, rgba(2, 19, 33, 0.46) 44%, rgba(2, 19, 33, 0.18) 100%),
+    linear-gradient(180deg, rgba(2, 19, 33, 0.1) 0%, rgba(2, 19, 33, 0.58) 100%);
+
+  /* 클릭 방지: 오버레이가 링크 클릭을 막지 않게 합니다. */
+  pointer-events: none;
+}
+
+.contents {
+  /* 텍스트 위치: 배너 안에서 왼쪽 정렬된 대표 카피로 배치합니다. */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  /* 텍스트 폭: 본문 주요 섹션 폭과 맞춥니다. */
+  width: min(88vw, 1280px);
+
+  /* 텍스트 이동: 중앙 컨테이너를 만든 뒤 안쪽에서 왼쪽 정렬합니다. */
+  transform: translate(-50%, -46%);
+
+  /* 텍스트 정렬: 대표 홈페이지다운 서브 히어로 느낌으로 왼쪽 정렬합니다. */
+  text-align: left;
+
+  /* 텍스트 색상: 어두운 이미지 위에서 선명한 흰색을 사용합니다. */
+  color: #ffffff;
+
+  /* 초기 표시: 배너 진입 애니메이션을 준비합니다. */
+  opacity: 0;
+
+  /* 전환: 텍스트가 자연스럽게 나타납니다. */
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.contents.showContents {
+  /* 표시 상태: 배너 텍스트가 나타납니다. */
+  opacity: 1;
+
+  /* 표시 위치: 살짝 올라오는 느낌으로 마무리합니다. */
+  transform: translate(-50%, -50%);
+}
+
+.contents::before {
+  /* 상단 라벨: 모든 서브페이지 배너에 브랜드감을 주는 작은 영문 라벨입니다. */
+  content: "GODEOK SUJAIN.";
+
+  /* 라벨 표시: 제목 위에 한 줄로 보여줍니다. */
+  display: block;
+
+  /* 라벨 아래 여백: 제목과 분리합니다. */
+  margin-bottom: 0.75vw;
+
+  /* 라벨 글자 크기: 제목보다 낮은 위계입니다. */
+  font-size: 0.76vw;
+
+  /* 라벨 굵기: 작은 글자가 흐려 보이지 않게 합니다. */
+  font-weight: 900;
+
+  /* 라벨 자간: 영문 브랜드 라벨의 고급스러운 느낌입니다. */
+  letter-spacing: 0.16em;
+
+  /* 라벨 색상: 골드 포인트입니다. */
+  color: #d4af37;
+}
+
+.title {
+  /* 제목 여백 제거: 위치를 직접 제어합니다. */
+  margin: 0 0 1vw;
+
+  /* 제목 최대 폭: 긴 제목이 너무 길게 퍼지지 않게 합니다. */
+  max-width: 760px;
+
+  /* 제목 크기: 서브페이지 대표 제목으로 충분히 크게 보이게 합니다. */
+  font-size: 3.1vw;
+
+  /* 제목 굵기: 첫눈에 페이지 주제가 보이게 합니다. */
+  font-weight: 900;
+
+  /* 제목 줄 높이: 두 줄 제목에도 안정적으로 보이게 합니다. */
+  line-height: 1.12;
+
+  /* 제목 자간: 한글 제목이 답답하지 않게 기본 자간을 사용합니다. */
+  letter-spacing: 0;
+
+  /* 제목 애니메이션 초기 상태입니다. */
+  opacity: 0;
+  transform: translateY(18px);
+
+  /* 제목 전환: fade + slide-up만 사용합니다. */
+  transition: opacity 0.7s ease 0.1s, transform 0.7s ease 0.1s;
+}
+
+.title.showTitle {
+  /* 제목 표시: 자연스럽게 올라오며 나타납니다. */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text {
+  /* 설명 최대 폭: 문장이 너무 길어지지 않게 합니다. */
+  max-width: 620px;
+
+  /* 설명 여백: 문장끼리 적당히 분리합니다. */
+  margin: 0.42vw 0 0;
+
+  /* 설명 글자 크기: 배너 설명문으로 읽기 좋은 크기입니다. */
+  font-size: 0.92vw;
+
+  /* 설명 줄 높이: 여러 줄 설명도 편하게 읽히게 합니다. */
+  line-height: 1.68;
+
+  /* 설명 색상: 제목보다 낮은 대비로 부드럽게 보이게 합니다. */
+  color: rgba(255, 255, 255, 0.76);
+
+  /* 설명 애니메이션 초기 상태입니다. */
+  opacity: 0;
+  transform: translateY(16px);
+
+  /* 설명 전환: 제목보다 살짝 늦게 나타납니다. */
+  transition: opacity 0.7s ease 0.22s, transform 0.7s ease 0.22s;
+}
+
+.text.showText {
+  /* 설명 표시: 자연스럽게 올라오며 나타납니다. */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.text span {
+  /* 강조 텍스트: 설명 안에서 필요한 경우 굵게 보이게 합니다. */
+  font-weight: 900;
+}
+
+/* =========================
+   모바일 스타일
+   - 모바일 배너 높이, 제목 크기, 설명 크기는 여기서만 수정합니다.
+========================= */
+@media (max-width: 900px) {
+  .container {
+    /* 모바일 상단 여백: 고정 GIF/헤더 아래에서 배너가 가려지지 않게 합니다. */
+    padding-top: calc(var(--mobile-banner-height, 5vh) + var(--mobile-header-height, 15vw));
+  }
+
+  .benerImage {
+    /* 모바일 배너 높이: PC를 축소하지 않고 모바일 전용 비율로 보이게 합니다. */
+    height: 46vw;
+
+    /* 모바일 이미지 초점: 건물과 하늘이 균형 있게 보이도록 합니다. */
+    object-position: center 58%;
+  }
+
+  .overlay {
+    /* 모바일 오버레이 위치: 고정 헤더 아래 배너 이미지와 정확히 겹치게 합니다. */
+    top: calc(var(--mobile-banner-height, 5vh) + var(--mobile-header-height, 15vw));
+    bottom: auto;
+
+    /* 모바일 오버레이 높이: 모바일 배너 이미지 높이와 맞춥니다. */
+    height: 46vw;
+
+    /* 모바일 오버레이: 텍스트가 있는 왼쪽을 더 어둡게 처리합니다. */
+    background:
+      linear-gradient(90deg, rgba(2, 19, 33, 0.86) 0%, rgba(2, 19, 33, 0.44) 68%, rgba(2, 19, 33, 0.12) 100%),
+      linear-gradient(180deg, rgba(2, 19, 33, 0.16) 0%, rgba(2, 19, 33, 0.64) 100%);
+  }
+
+  .contents {
+    /* 모바일 텍스트 위치: 배너 중앙보다 살짝 위에 배치해 답답함을 줄입니다. */
+    top: calc(var(--mobile-banner-height, 5vh) + var(--mobile-header-height, 15vw) + 23vw);
+
+    /* 모바일 텍스트 폭: 좌우 여백을 둡니다. */
+    width: 88vw;
+  }
+
+  .contents::before {
+    /* 모바일 라벨 크기: 작은 화면에서 읽기 가능한 크기입니다. */
+    font-size: 2vw;
+
+    /* 모바일 라벨 간격: 제목과의 거리입니다. */
+    margin-bottom: 1.6vw;
+  }
+
+  .title {
+    /* 모바일 제목 크기: 서브페이지 제목이 과하게 커지지 않게 합니다. */
+    font-size: 6.2vw;
+
+    /* 모바일 제목 아래 여백: 설명과 자연스럽게 이어집니다. */
+    margin-bottom: 2.2vw;
+  }
+
+  .text {
+    /* 모바일 설명 크기: 배너 안에서 부담 없이 읽히는 크기입니다. */
+    font-size: 2.65vw;
+
+    /* 모바일 설명 줄 높이: 줄 간격을 확보합니다. */
+    line-height: 1.55;
+
+    /* 모바일 설명 여백: 설명 줄 사이 거리입니다. */
+    margin-top: 0.8vw;
+  }
+}

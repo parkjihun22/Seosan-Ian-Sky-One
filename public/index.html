@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <!-- 1) 기본 메타 -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- 2) Favicon & PWA -->
+  <link rel="icon" href="%PUBLIC_URL%/logo512.ico" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo512.ico" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+  <!-- 3) 기본 SEO 메타: 페이지별 세부 메타는 React SEO 컴포넌트에서 관리 -->
+  <title>▪서산 이안 스카이원</title>
+  <meta name="description"
+    content="서산 이안 스카이원ㅣ이안 스카이원 서산ㅣ서산시 동문동 최고 38층ㅣ전용 84㎡ㅣ총 372세대ㅣ10년 장기일반민간임대ㅣ모델하우스ㅣ견본주택ㅣ사업개요ㅣ입지안내ㅣ평면도ㅣ방문예약" />
+  <meta name="keywords" content="서산 이안 스카이원, 서산 이안 스카이원, 서산 이안 스카이원 모델하우스, 서산 이안 스카이원 분양가, 서산 이안 스카이원 청약" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <link rel="canonical" href="https://www.hg-prugioriverfront.co.kr/" />
+
+  <!-- 3-1) SNS / crawler fallback: React Helmet 적용 전 기본값 제공 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="서산 이안 스카이원" />
+  <meta property="og:title" content="서산 이안 스카이원" />
+  <meta property="og:description"
+    content="서산 이안 스카이원ㅣ이안 스카이원 서산ㅣ서산시 동문동 최고 38층ㅣ전용 84㎡ㅣ총 372세대ㅣ10년 장기일반민간임대ㅣ모델하우스ㅣ견본주택ㅣ사업개요ㅣ입지안내ㅣ평면도ㅣ방문예약" />
+  <meta property="og:url" content="https://www.hg-prugioriverfront.co.kr/" />
+  <meta property="og:image" content="https://www.hg-prugioriverfront.co.kr/img/og/main.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="서산 이안 스카이원" />
+  <meta name="twitter:description"
+    content="서산 이안 스카이원ㅣ이안 스카이원 서산ㅣ서산시 동문동 최고 38층ㅣ전용 84㎡ㅣ총 372세대ㅣ10년 장기일반민간임대ㅣ모델하우스ㅣ견본주택ㅣ사업개요ㅣ입지안내ㅣ평면도ㅣ방문예약" />
+  <meta name="twitter:image" content="https://www.hg-prugioriverfront.co.kr/img/og/main.jpg" />
+
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#01496f" />
+
+  <!-- 4) 웹마스터 검증 -->
+  <meta name="naver-site-verification" content="133f96bdc2076218846f095347299444e4174080" />
+  <meta name="google-site-verification" content="6iw34ec2qF-k1hat-zmGHwP4lXD1JnWZw2LaKZ7SBoE" />
+
+  <!-- 5) RSS, Sitemap -->
+  <link rel="alternate" type="application/rss+xml" title="서산 이안 스카이원 RSS"
+    href="https://www.hg-prugioriverfront.co.kr/rss.xml" />
+  <link rel="sitemap" type="application/xml" title="사이트맵" href="https://www.hg-prugioriverfront.co.kr/sitemap.xml" />
+
+  <!-- 6) DNS-Prefetch & 폰트 프리로드 -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100..900&family=Roboto:wght@700&display=swap"
+    onload="this.rel='stylesheet'" />
+  <noscript>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100..900&family=Roboto:wght@700&display=swap" />
+  </noscript>
+
+  <!-- 7) Static structured data: JS 실행 전 검색엔진 보조용 정적 데이터 -->
+  <script id="static-seo-jsonld" type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.hg-prugioriverfront.co.kr/#organization",
+        "name": "서산 이안 스카이원",
+        "url": "https://www.hg-prugioriverfront.co.kr/",
+        "logo": "https://www.hg-prugioriverfront.co.kr/logo512.ico",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+82-1533-8848",
+          "contactType": "customer service",
+          "areaServed": "KR",
+          "availableLanguage": "Korean"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.hg-prugioriverfront.co.kr/#website",
+        "url": "https://www.hg-prugioriverfront.co.kr/",
+        "name": "서산 이안 스카이원",
+        "inLanguage": "ko-KR",
+        "publisher": { "@id": "https://www.hg-prugioriverfront.co.kr/#organization" }
+      },
+      {
+        "@type": "ApartmentComplex",
+        "@id": "https://www.hg-prugioriverfront.co.kr/#apartment",
+        "name": "서산 이안 스카이원",
+        "url": "https://www.hg-prugioriverfront.co.kr/",
+        "description": "경기도 김포시 고촌읍 향산리 588-45번지 일원에 조성되는 서산 이안 스카이원 공동주택 총 2,432세대와 오피스텔 250실 분양, 청약, 공급정보, 견본주택과 모델하우스 방문예약을 안내하는 공식 홈페이지입니다.",
+        "telephone": "1533-8848",
+        "brand": { "@type": "Brand", "name": "푸르지오" },
+        "creator": { "@type": "Organization", "name": "대우건설" },
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "KR",
+          "addressRegion": "경기도",
+          "addressLocality": "김포시",
+          "streetAddress": "고촌읍 향산리 588-45번지 일원"
+        }
+      },
+      {
+        "@type": "ItemList",
+        "name": "서산 이안 스카이원 주요 메뉴",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "item": { "@type": "SiteNavigationElement", "name": "브랜드소개", "url": "https://www.hg-prugioriverfront.co.kr/Brand/intro" } },
+          { "@type": "ListItem", "position": 2, "item": { "@type": "SiteNavigationElement", "name": "사업안내", "url": "https://www.hg-prugioriverfront.co.kr/BusinessGuide/intro" } },
+          { "@type": "ListItem", "position": 3, "item": { "@type": "SiteNavigationElement", "name": "입지환경", "url": "https://www.hg-prugioriverfront.co.kr/LocationEnvironment/intro" } },
+          { "@type": "ListItem", "position": 4, "item": { "@type": "SiteNavigationElement", "name": "단지안내", "url": "https://www.hg-prugioriverfront.co.kr/ComplexGuide/intro" } },
+          { "@type": "ListItem", "position": 5, "item": { "@type": "SiteNavigationElement", "name": "분양안내", "url": "https://www.hg-prugioriverfront.co.kr/BusinessGuide/documents" } },
+          { "@type": "ListItem", "position": 6, "item": { "@type": "SiteNavigationElement", "name": "타입안내", "url": "https://www.hg-prugioriverfront.co.kr/FloorPlan/59A" } },
+          { "@type": "ListItem", "position": 7, "item": { "@type": "SiteNavigationElement", "name": "언론보도", "url": "https://www.hg-prugioriverfront.co.kr/Promotion/Press" } },
+          { "@type": "ListItem", "position": 8, "item": { "@type": "SiteNavigationElement", "name": "관심고객등록", "url": "https://www.hg-prugioriverfront.co.kr/Promotion/Customer" } }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+  <noscript>
+    <section>
+      <h1>서산 이안 스카이원</h1>
+      <p>
+        서산 이안 스카이원 공식 홈페이지입니다. 경기도 김포시 고촌읍 향산리
+        588-45번지 일원 한강시네폴리스에 조성되는 대우건설 푸르지오 브랜드
+        대단지로, 사업개요, 입지환경, 단지배치, 평면정보, 분양일정, 청약안내,
+        모델하우스 및 방문예약 정보를 확인하실 수 있습니다.
+      </p>
+    </section>
+
+    <nav aria-label="서산 이안 스카이원 주요 메뉴">
+      <a href="/">홈</a>
+      <a href="/Brand/intro">브랜드소개</a>
+      <a href="/Brand/video">홍보영상</a>
+      <a href="/BusinessGuide/intro">사업안내</a>
+      <a href="/BusinessGuide/plan">분양일정</a>
+      <a href="/LocationEnvironment/intro">입지환경</a>
+      <a href="/LocationEnvironment/primium">프리미엄</a>
+      <a href="/ComplexGuide/intro">단지안내</a>
+      <a href="/ComplexGuide/detailintro">호수배치도</a>
+      <a href="/ComplexGuide/community">커뮤니티</a>
+      <a href="/SalesInfo/announcement">입주자 모집공고</a>
+      <a href="/BusinessGuide/documents">공급안내</a>
+      <a href="/SalesInfo/guide">계약서류안내</a>
+      <a href="/FloorPlan/59A">84㎡</a>
+      <a href="/FloorPlan/59B">106㎡</a>
+      <a href="/FloorPlan/84A">122㎡</a>
+      <a href="/FloorPlan/84B">180㎡</a>
+      <a href="/FloorPlan/Emodel">E-모델하우스</a>
+      <a href="/Promotion/Press">언론보도</a>
+      <a href="/Promotion/Customer">관심고객등록</a>
+    </nav>
+    </section>
+  </noscript>
+
+  <div id="root"></div>
+</body>
+
+</html>
+
+<!-- ====== FAMILY SITE 백링크영역 시작 ====== -->
+<footer style="background:#292929; color:#fff; padding:1px 0 2px 0; text-align:center;">
+  <div class="family-site-rolling-wrap">
+    <div class="family-site-rolling"></div>
+  </div>
+</footer>
+<style>
+  .family-site-rolling-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #292929;
+    padding: 3px 0 2px 0;
+    position: relative
+  }
+
+  .family-site-rolling {
+    display: inline-block;
+    white-space: nowrap;
+    animation: rolling 55s linear infinite
+  }
+
+  .family-site-rolling span,
+  .family-site-rolling a {
+    font-size: 12px;
+    color: #aaa;
+    margin: 0 2px;
+    text-decoration: none;
+    vertical-align: middle;
+    transition: color .2s
+  }
+
+  .family-site-rolling a:hover {
+    color: #fff;
+    text-decoration: underline
+  }
+
+  @keyframes rolling {
+    0% {
+      transform: translateX(0%)
+    }
+
+    100% {
+      transform: translateX(-50%)
+    }
+  }
+
+  @media (max-width:600px) {
+
+    .family-site-rolling span,
+    .family-site-rolling a {
+      font-size: 13px !important;
+      margin: 0 2px !important
+    }
+
+    .family-site-rolling-wrap {
+      padding: 7px 0 2px 0
+    }
+  }
+</style>
+<script>
+  const sites = [
+    { url: "https://www.beyinegzersizi.com/", name: "브레인시티 메디스파크" },
+    { url: "https://www.abcya4.com/", name: "천안 휴먼빌 퍼스트시티" },
+    { url: "https://www.verficktescheisse.com/", name: "평택화양 신영지웰" },
+    { url: "https://niceoi.kr/", name: "브레인시티 앤네이처 미래도" },
+    { url: "https://eliasart.kr/", name: "평택 브레인시티 푸르지오" },
+    { url: "https://intercs.co.kr/", name: "청주 센트럴 더 플래티넘" },
+    { url: "https://hangboggift.kr/", name: "대전 문화공원 수자인" },
+    { url: "https://www.bunyang-114.com/", name: "김포 칸타빌 에디션" },
+    { url: "https://tradexmeds.com/", name: "더샵 신문 그리니티" },
+    { url: "https://www.vaaclubs.com/", name: "평택 브레인시티 수자인" },
+    { url: "https://www.kf-liria.com/", name: "아산 모종 서한이다음" },
+    { url: "https://www.layershop.kr/", name: "천안아산역 이편한세상시티" },
+    { url: "https://www.cssdesign.kr/", name: "시흥 거모지구 대방엘리움" },
+    { url: "https://www.ifors2020.kr/", name: "트리븐 서산" },
+    { url: "https://www.dwbsongs.com/", name: "엘리프 검단 포레듀" },
+    { url: "https://www.a7lashare.com/", name: "모종 삼일 파라뷰" },
+    { url: "https://www.sketchs.co.kr/", name: "브레인시티 비스타동원" },
+    { url: "https://www.locamobility.co.kr/", name: "평택 브레인시티 메디스파크" },
+    { url: "https://delidilly.co.kr/", name: "효자 시그니처 998" },
+    { url: "https://www.theporest.co.kr/", name: "대전 용전 마루힐" },
+    { url: "https://paragon-modelhouse.co.kr/", name: "동탄 동양파라곤 3차" },
+    { url: "https://www.leecols.kr/", name: "평택 화양 서희스타힐스" },
+    { url: "https://www.doosanweavethezenith.co.kr/", name: "천안 두산위브 더제니스" },
+    { url: "https://www.sujain-modellhouse.co.kr/", name: "고덕 수자인 하우스디" },
+    { url: "https://www.godeok-athera.co.kr/", name: "고덕신도시 아테라" },
+    { url: "https://www.elifgodeok-central.co.kr/", name: "엘리프 고덕 센트럴하이" },
+    { url: "https://www.ianflexity.co.kr/", name: "용인 이안 플렉시티" },
+    { url: "https://xn--289apct1w55qukgde446a3qjlygg4b.kr/", name: "평택 고덕 수자인풍경채" },
+    { url: "https://hillstategodeok-elisth.co.kr/", name: "힐스테이트 고덕엘리스트" },
+    { url: "https://godeok-sujainhouse.co.kr/", name: "고덕 수자인풍경채" },
+    { url: "https://cheongju-hanyanglips.com/", name: "청주 한양립스" },
+    { url: "https://pyeongtaekgodeok-umirin.co.kr/", name: "평택 고덕 우미린" },
+    { url: "https://www.hg-prugioriverfront.co.kr/", name: "서산 이안 스카이원" },
+    { url: "https://geomoho-hobansummit.com/", name: "시흥 거모 호반써밋" },
+    { url: "https://wonsamcenterville-firstone.com/", name: "원삼 센트레빌 퍼스트원" },
+    { url: "https://www.lotte-castl.co.kr/", name: "중앙공원 롯데캐슬" },
+    { url: "https://www.diarivalencia.com/", name: "평택 고덕 제일풍경채" },
+    { url: "https://gd-jeilpunggyeongchae.co.kr/", name: "고덕 제일풍경채" },
+    { url: "https://pt-thecentral45.co.kr/", name: "평택역 더센트럴45" },
+    { url: "https://gjws-jinarehii.com/", name: "공주 월송 진아레히" },
+    { url: "https://sinbiapt.co.kr/", name: "서대전 상떼빌 시그니처" },
+  ];
+  function shuffle(a) { return a.map(v => [v, Math.random()]).sort((x, y) => x[1] - y[1]).map(v => v[0]) }
+  document.addEventListener("DOMContentLoaded", function () {
+    const shuffled = shuffle(sites);
+    let html = '<span>FAMILY SITE · </span>';
+    shuffled.forEach((s, i) => { html += `<a href="${s.url}" target="_blank" rel="noopener">${s.name}</a>`; if (i < shuffled.length - 1) html += '<span>·</span>'; });
+    document.querySelector('.family-site-rolling').innerHTML = html;
+  });
+</script>
+<!-- ====== FAMILY SITE 백링크영역 끝 ====== -->
+</body>
+
+</html>

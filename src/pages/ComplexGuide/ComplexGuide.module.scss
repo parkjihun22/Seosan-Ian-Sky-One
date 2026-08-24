@@ -1,0 +1,260 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.bener{
+    width: 100vw;
+    height: auto;
+}
+
+.image {
+    width: 60rem;
+    height: auto;
+
+}
+
+.textBox{
+    margin: 3vw 0 0 0;
+    text-align: center;
+    font-size: 2.5vw;
+
+    div:nth-of-type(1) {
+        font-weight: 200;
+    }
+    div:nth-of-type(2) {
+        margin-top: 0.5vw;
+        font-weight: 800;
+        color: #01496f;
+    }
+}
+
+.commonBox {
+    margin: 2vw 0;
+    width: 60%;
+    background-color: #f8f4f0;
+    border: 1px solid #e9e2da;
+
+
+    .notice {
+        padding: 0 1vw;
+        line-height: 1.1vw;
+        font-size: 1vw;
+        color: #ada8a2;
+
+    }
+
+    .notice:nth-of-type(1) {
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+    }
+
+    .notice:nth-of-type(2),
+    .notice:nth-of-type(3),
+    .notice:nth-of-type(4),
+    .notice:nth-of-type(5) {
+        padding-bottom: 1vw;
+    }
+
+    .notice:nth-of-type(6) {
+        padding-bottom: 1vw;
+    }
+}
+
+.image2 {
+    margin: 4vw 0 0 0;
+    width: 60%;
+    height: auto;
+    opacity: 0;  // 처음에는 안 보이게 설정
+    transform: scale(1.05);  // 처음에 살짝 커진 상태
+    transition: opacity 1.5s ease, transform 1.5s ease;  // 애니메이션 효과
+
+    &.showImage2 {
+        opacity: 1;  // 애니메이션이 완료되면 이미지가 보이게
+        transform: scale(1);  // 원래 크기로 돌아옴
+    }
+
+}
+
+/* =========================
+   모바일 스타일
+========================= */
+
+@media (max-width: 900px) {
+  .image {
+            width: 100vw;
+  }
+}
+
+@media (max-width: 900px) {
+  .commonBox {
+            width: 90%;
+  }
+}
+
+@media (max-width: 900px) {
+  .commonBox {
+    .notice {
+                  padding: 0  3vw;
+                  font-size: 2.5vw;
+                  line-height: 3vw;
+                  text-indent: -2vw;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .image2 {
+            width: 90%;
+  }
+}
+
+/* =========================
+   페이지 공통 문구 / 안내 박스 - PC 보정
+   - MenuBar 아래 대표 문구와 주의문 박스를 통일합니다.
+========================= */
+@media (min-width: 901px) {
+    .textBox {
+        /* 문구 영역 폭: 긴 문장이 과하게 퍼지지 않도록 제한합니다. */
+        width: min(88vw, 1180px);
+
+        /* 문구 위아래 여백: 메뉴바와 본문 사이의 간격입니다. */
+        margin: 4.2vw auto 2.4vw;
+
+        /* 문구 정렬: 페이지 대표 문구는 중앙 정렬합니다. */
+        text-align: center;
+
+        /* 문구 등장 상태: 기존 애니메이션과 충돌하지 않도록 보이게 합니다. */
+        opacity: 1;
+    }
+
+    .textBox div:nth-of-type(1) {
+        /* 첫 번째 문구 크기: 보조 제목입니다. */
+        font-size: 2.2vw;
+        line-height: 1.35;
+        font-weight: 500;
+        color: #14202a;
+    }
+
+    .textBox div:nth-of-type(2) {
+        /* 두 번째 문구 크기: 핵심 강조 문구입니다. */
+        margin-top: 0.6vw;
+        font-size: 2.6vw;
+        line-height: 1.25;
+        font-weight: 900;
+        color: #01496f;
+    }
+
+    .textBox div:nth-of-type(3) {
+        /* 세 번째 문구 크기: 설명문입니다. */
+        margin-top: 1.05vw;
+        font-size: 1.08vw;
+        line-height: 1.75;
+        font-weight: 500;
+        color: rgba(20, 32, 42, 0.68);
+        word-break: keep-all;
+    }
+
+    .commonBox,
+    .commonBox2 {
+        /* 안내 박스 폭: 본문 이미지와 비슷한 폭으로 맞춥니다. */
+        width: min(88vw, 1280px);
+
+        /* 안내 박스 여백: 콘텐츠 하단에서 자연스럽게 분리합니다. */
+        margin: 2vw auto 4vw;
+
+        /* 안내 박스 안쪽 여백: 작은 문구가 가장자리에 붙지 않게 합니다. */
+        padding: 1vw 1.2vw;
+
+        /* 안내 박스 배경: 고급스럽고 차분한 흰색 톤입니다. */
+        background: rgba(255, 255, 255, 0.74);
+
+        /* 안내 박스 테두리: 아주 얇게 영역을 구분합니다. */
+        border: 1px solid rgba(1, 73, 111, 0.1);
+
+        /* 안내 박스 모서리: 8px 이하로 정돈합니다. */
+        border-radius: 8px;
+
+        /* 박스 크기 계산: padding 포함으로 폭을 유지합니다. */
+        box-sizing: border-box;
+    }
+
+    .commonBox .notice,
+    .commonBox2 .notice {
+        /* 안내문 여백: 부모 박스 padding으로 관리합니다. */
+        margin: 0;
+        padding: 0;
+
+        /* 안내문 글자 크기: PC 보조 문구 크기입니다. */
+        font-size: 0.78vw;
+
+        /* 안내문 줄 높이: 긴 주의문이 뭉치지 않게 합니다. */
+        line-height: 1.7;
+
+        /* 안내문 색상: 낮은 대비로 차분하게 처리합니다. */
+        color: rgba(20, 32, 42, 0.52);
+
+        /* 한글 줄바꿈: 문장이 자연스럽게 내려가게 합니다. */
+        word-break: keep-all;
+    }
+}
+
+/* =========================
+   페이지 공통 문구 / 안내 박스 - Mobile 보정
+   - 모바일 전용 문구와 안내 박스 크기입니다.
+========================= */
+@media (max-width: 900px) {
+    .textBox {
+        /* 모바일 문구 폭: 좌우 여백을 확보합니다. */
+        width: min(90vw, 560px);
+
+        /* 모바일 문구 여백: 메뉴바 아래 공간입니다. */
+        margin: 7vw auto 4.5vw;
+
+        /* 기존 큰 모바일 폰트 값을 덮어쓰기 위한 기본값입니다. */
+        font-size: initial;
+    }
+
+    .textBox div:nth-of-type(1) {
+        /* 모바일 첫 번째 문구 크기입니다. */
+        font-size: 3vw;
+        line-height: 1.35;
+    }
+
+    .textBox div:nth-of-type(2) {
+        /* 모바일 핵심 문구 크기입니다. */
+        margin-top: 1.4vw;
+        font-size: 3vw;
+        line-height: 1.34;
+    }
+
+    .textBox div:nth-of-type(3) {
+        /* 모바일 설명 문구 크기입니다. */
+        margin-top: 3vw;
+        font-size: 2.5vw;
+        line-height: 1.72;
+    }
+
+    .commonBox,
+    .commonBox2 {
+        /* 모바일 안내 박스 폭: 본문 폭과 맞춥니다. */
+        width: min(90vw, 560px);
+
+        /* 모바일 안내 박스 여백입니다. */
+        margin: 5vw auto 10vw;
+
+        /* 모바일 안내 박스 안쪽 여백입니다. */
+        padding: 3.5vw;
+    }
+
+    .commonBox .notice,
+    .commonBox2 .notice {
+        /* 모바일 안내문 글자 크기와 줄 높이입니다. */
+        padding: 0;
+        font-size: 2.5vw;
+        line-height: 1.72;
+        text-indent: 0;
+    }
+}

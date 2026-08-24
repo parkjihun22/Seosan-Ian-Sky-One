@@ -1,0 +1,162 @@
+// MobileNewsSection.module.scss
+
+// ─── 컬러 팔레트 ───
+$base-bg: #fafafa;
+$card-bg: #ffffff;
+$primary-text: #333333;
+$secondary-text: #777777;
+$accent: #00573e;      // 딥 그린으로 변경
+$border: #e0e0e0;
+$shadow: rgba(0, 0, 0, 0.05);
+
+// ─── 레이아웃 ───
+.newsSection {
+  font-family: 'Pretendard-Regular';
+  background: $base-bg;
+  padding: 4vw 3vw;
+
+  .sectionTitle {
+    font-size: 4vw;
+    font-weight: 500;
+    color: $primary-text;
+    text-align: center;
+    margin-bottom: 6vw;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 12vw;
+      height: 0.5vw;
+      background: $accent;
+      margin: 1vw auto 0;
+      border-radius: 0.25vw;
+    }
+  }
+
+  .newsGrid {
+    display: grid;
+    gap: 3vw;
+
+    // 최소 2열, 최대 4열 자동 조정
+    grid-template-columns: repeat(auto-fit, minmax(40vw, 1fr));
+
+  }
+
+  .card {
+    background: $card-bg;
+    border-radius: 2vw;
+    overflow: hidden;
+    box-shadow: 0 1vw 2vw $shadow;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    position: relative;
+    &:before {
+      content: "";
+      display: block;
+      padding-top: 100%;
+    }
+    > * {
+      position: absolute;
+      left: 0; right: 0;
+    }
+
+    &:hover {
+      transform: translateY(-1vw);
+      box-shadow: 0 2vw 3vw rgba(0, 0, 0, 0.1);
+    }
+
+    .imageWrapper {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+      &:hover img {
+        transform: scale(1.05);
+      }
+    }
+
+    .cardBody {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 40%;
+      padding: 6vw 3vw 3vw;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .cardTitle {
+        font-size: 2vw;
+        font-weight: 600;
+        color: $primary-text;
+        line-height: 1.2;
+        margin-bottom: 1.5vw;
+      }
+
+      .cardExcerpt {
+        font-size: 2vw;
+        color: $secondary-text;
+        line-height: 1.3;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        margin-bottom: 1.5vw;
+      }
+
+      .cardDate {
+        font-size: 2vw;
+        color: $secondary-text;
+        text-align: right;
+      }
+    }
+  }
+
+  // ─── 보도자료 더 보기 버튼 ───
+  .more {
+    text-align: center;
+    margin-top: 4vw;
+
+    a {
+      display: inline-block;
+      padding: 2vw 5vw;
+      background: #01496f;
+      color: #fff;
+      border-radius: 3vw;
+      font-size: 2vw;
+      font-weight: 500;
+      text-decoration: none;
+      transition: background 0.3s ease, transform 0.3s ease;
+
+      &:hover {
+        background: #07393b;
+        transform: translateY(-0.5vw);
+      }
+    }
+  }
+}
+
+/* =========================
+   PC 보정 스타일
+========================= */
+
+@media (min-width: 800px) {
+  // ─── 레이아웃 ─── .newsSection {
+    .newsGrid {
+            grid-template-columns: repeat(4, 1fr);
+    }
+  }
+}
